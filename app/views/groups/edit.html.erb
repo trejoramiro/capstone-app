@@ -1,0 +1,15 @@
+<%= form_tag("/groups/#{@group.id}", method: "patch") do %>
+<div>
+<%= label_tag(:name, "Name") %>
+<%= text_field_tag(:name, @group.name) %>
+</div>
+<div>
+<%= label_tag(:location, "Location") %>
+<%= text_field_tag(:location, @group.location) %>
+</div>
+<%= submit_tag("Update") %>
+<% end %>
+
+<%= form_tag("/groups/#{@group.id}", method: "delete") do %>
+<%= submit_tag("Delete") %>
+<% end %>

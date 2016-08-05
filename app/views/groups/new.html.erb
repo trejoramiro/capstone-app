@@ -1,0 +1,11 @@
+<%= form_tag("/groups/", method: "post") do %>
+<div>
+<%= label_tag(:name, "Name") %>
+<%= text_field_tag(:name) %>
+</div>
+<div>
+<%= label_tag(:location, "Location") %>
+<%= text_field_tag(:location) %>
+</div>
+<%= submit_tag("Create") %>
+<% end %>
