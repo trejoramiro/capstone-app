@@ -5,5 +5,7 @@ class Group < ApplicationRecord
   has_many :votes
   has_many :restaurants
   has_many :visits
+
+  has_many :events
 end
 

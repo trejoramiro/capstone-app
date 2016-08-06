@@ -12,7 +12,12 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find_by(id: params[:id])
-    @user.assign_attributes({email: params[:email]})
+    @user.assign_attributes(
+      {
+      username: params[:username],
+      email: params[:email]
+      }
+      )
     @user.save
     redirect_to "/users/#{@user.id}"
   end

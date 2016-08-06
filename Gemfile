@@ -29,6 +29,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'faker'
 
+gem 'unirest'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

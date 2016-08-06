@@ -1,0 +1,23 @@
+<%= form_tag("/events", method: "post") do %>
+<div>
+<%= label_tag(:name, "Name") %>
+<%= text_field_tag(:name) %>
+</div>
+<div>
+<%= label_tag(:description, "Description") %>
+<%= text_field_tag(:description) %>
+</div>
+<div>
+<%= label_tag(:capacity, "Capacity") %>
+<%= text_field_tag(:capacity) %>
+</div>
+<div>
+<%= label_tag(:start_time, "Start Time") %>
+<%= text_field_tag(:start_time) %>
+</div>
+<div>
+<%= label_tag(:end_time, "End Time") %>
+<%= text_field_tag(:end_time) %>
+</div>
+<%= submit_tag("Create") %>
+<% end %>

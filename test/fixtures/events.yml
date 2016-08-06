@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  restaurant_id: 1
+  name: MyString
+  capacity: 1
+  start_time: 2016-08-05 22:45:07
+  end_time: 2016-08-05 22:45:07
+  description: MyText
+  group_id: 1
+
+two:
+  restaurant_id: 1
+  name: MyString
+  capacity: 1
+  start_time: 2016-08-05 22:45:07
+  end_time: 2016-08-05 22:45:07
+  description: MyText
+  group_id: 1

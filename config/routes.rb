@@ -9,7 +9,12 @@ Rails.application.routes.draw do
   delete '/groups/:id' => "groups#delete"
 
   get '/users/:id' => "users#show"
-  get '/users/:id/edit' => "groups#edit"
+  get '/users/:id/edit' => "users#edit"
   patch '/users/:id' => "users#update"
+
+  get '/events/new' => "events#new"
+  post '/events' => "events#create"
+  patch '/events/:id' => "events#update"
+  delete '/events/:id' => "events#delete"
 
 end

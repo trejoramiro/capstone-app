@@ -1,0 +1,27 @@
+<%= form_tag("/events/#{@event.id}", method: "patch") do %>
+<div>
+<%= label_tag(:name, "Name") %>
+<%= text_field_tag(:name, @event.name ) %>
+</div>
+<div>
+<%= label_tag(:description, "Description") %>
+<%= text_field_tag(:description, @event.description) %>
+</div>
+<div>
+<%= label_tag(:capacity, "Capacity") %>
+<%= text_field_tag(:capacity, @event.capacity) %>
+</div>
+<div>
+<%= label_tag(:start_time, "Start Time") %>
+<%= text_field_tag(:start_time, @start_time) %>
+</div>
+<div>
+<%= label_tag(:end_time, "End Time") %>
+<%= text_field_tag(:end_time, @event.end_time) %>
+</div>
+<%= submit_tag("Update") %>
+<% end %>
+
+<%= form_tag("/events/#{@event.id}", method: "delete") do %>
+<%= submit_tag("Delete") %>
+<% end %>
