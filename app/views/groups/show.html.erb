@@ -1,4 +1,12 @@
 <div>
+<%= form_tag("/groups", method: "get") do %>
+<div>
+<%= text_field_tag(:search, "Search") %>
+</div>
+<% end %>
+</div>
+
+<div>
 <%= @group.id %>
 </div>
 <div>

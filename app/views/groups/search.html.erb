@@ -1,0 +1,9 @@
+<% @venues.each do |venue| %>
+<div>
+  <h3><%= venue["name"] %></h3>
+  <p><%= venue["location"]["address"]%></p>
+  <%= form_tag("/venues", method: "post") do %>
+  <%= submit_tag("Add to Group List") %>
+<% end %>
+</div>
+<% end %>

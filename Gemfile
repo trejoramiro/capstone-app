@@ -32,6 +32,8 @@ gem 'faker'
 gem 'unirest'
 # Shim to load environment variables from .env in development
 gem 'dotenv-rails', :groups => [:development, :test]
+# Complete geocoding solution for Ruby.
+gem 'geocoder'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
