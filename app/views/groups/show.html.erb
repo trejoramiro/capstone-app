@@ -7,3 +7,9 @@
 <div>
 <%= @group.location %>
 </div>
+<h3>Members</h3>
+<% @members.each do |member| %>
+<div>
+<%= member.username %>
+</div>
+<% end %>

@@ -7,4 +7,9 @@ Rails.application.routes.draw do
   get '/groups/:id/edit' => "groups#edit"
   patch '/groups/:id' => "groups#update"
   delete '/groups/:id' => "groups#delete"
+
+  get '/users/:id' => "users#show"
+  get '/users/:id/edit' => "groups#edit"
+  patch '/users/:id' => "users#update"
+
 end
