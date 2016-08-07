@@ -51,9 +51,9 @@ function getLocation(){
     console.log(position.coords.latitude);
     console.log(position.coords.longitude);
     $.ajax({
-      url: "/groups/location",
+      url: "/groups/41/location",
       type: "POST",
-      data: {coordinates: {
+      data: { coordinates: {
         latitude: position.coords.latitude,
         longitude: position.coords.longitude
       }},

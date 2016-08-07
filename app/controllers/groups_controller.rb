@@ -31,7 +31,7 @@ class GroupsController < ApplicationController
     render 'new.html.erb'
   end
 
-  def create
+  def add
      @group = Group.new(
       name: params[:name],
       location: params[:location])
@@ -60,10 +60,15 @@ class GroupsController < ApplicationController
     redirect_to '/groups'
   end
 
-  def add
-    puts "*************"
-    puts "Hit the route!"
-    puts "*************"
-
+  def create
+  @group = Group.find_by(id: params[:group_id])
+  puts "***********"
+  puts params["coordinates"]["longitude"].to_f
+  puts params["coordinates"]["latitude"].to_f
+  puts "***********"
+  @group.longitude = params["coordinates"]["longitude"].to_f
+  @group.latitude = params["coordinates"]["latitude"].to_f
+  @group.save
+  puts "Data successfully saved."
   end
 end
