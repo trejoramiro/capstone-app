@@ -14,15 +14,7 @@ class VotesController < ApplicationController
     @members = @group.users
     @members.each do |member|
       @vote = Vote.where(event_id: params[:event_id].to_i, user_id: member.id).first
-      puts "************"
-      p member.id
-      p params[:event_id]
-      p @vote
-      puts "************"
-
-      @vote.venue_id = params[:venue]
-
-      Rails.logger.info @vote.attributes
+      @vote.venue_id = params[:venue].to_i
       @vote.save
     end
     redirect_to "/groups/#{@group.id}"
