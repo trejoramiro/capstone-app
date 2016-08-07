@@ -6,6 +6,8 @@
 <% end %>
 </div>
 
+<button id="location-button" type="button" onclick="getLocation();">Use My Location</button>
+
 <div>
 <%= @group.id %>
 </div>
@@ -15,6 +17,10 @@
 <div>
 <%= @group.location %>
 </div>
+<h3>Events</h3>
+<% @events.each do |event| %>
+<p><%= event.name %></p>
+<% end %>
 <h3>Members</h3>
 <% @members.each do |member| %>
 <div>
@@ -35,3 +41,17 @@
 <hr>
 </div>
 <% end %>
+
+<script>
+function getLocation(){
+  navigator.geolocation.getCurrentPosition(function(position) {
+    console.log(position.coords.latitude);
+    console.log(position.coords.longitude);
+    // var data = {
+    //   latitude: position.coords.latitude,
+    //   longitude: position.coords.longitude
+    // };
+  //$.post( "groups/location", data );
+  });
+};
+</script>

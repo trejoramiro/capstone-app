@@ -23,6 +23,7 @@ class GroupsController < ApplicationController
       @group = Group.find_by(id: params[:id])
       @members = @group.users
       @venues = @group.venues
+      @events = @group.events
       render 'show.html.erb'
     end
   end
@@ -60,4 +61,7 @@ class GroupsController < ApplicationController
     redirect_to '/groups'
   end
 
+  def add
+    puts "This route is hit!"
+  end
 end

@@ -1,4 +1,4 @@
-<%= form_tag("/events", method: "post") do %>
+<%= form_tag("/events/#{@group.id}", method: "post") do %>
 <div>
 <%= label_tag(:name, "Name") %>
 <%= text_field_tag(:name) %>

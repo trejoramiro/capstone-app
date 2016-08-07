@@ -1,4 +1,9 @@
-<%= form_tag("/events/#{@event.id}", method: "post") do %>
+<h3><%= @event.name %></h3>
+<%= form_tag("/votes/#{@group.id}", method: "post") do %>
 <% @venues.each do |venue| %>
-
+<%= radio_button_tag(:venue, "#{venue.id}") %>
+<%= label_tag(:venue_name, "#{venue.name}") %>
+<%= hidden_field_tag :event_id, @event.id %>
+<% end %>
+<%= submit_tag("Vote") %>
 <% end %>
