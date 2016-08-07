@@ -2,8 +2,10 @@
 <div>
   <h3><%= venue["name"] %></h3>
   <p><%= venue["location"]["address"]%></p>
-  <%= form_tag("/venues", method: "post") do %>
+  <%= form_tag("/venues/#{@group.id}", method: "post") do %>
+  <%= hidden_field_tag  name="venue_name", value = "#{venue["name"]}"%>
+  <%= hidden_field_tag name="location", value = "#{venue["location"]["address"]}" %>
   <%= submit_tag("Add to Group List") %>
-<% end %>
+  <% end %>
 </div>
 <% end %>

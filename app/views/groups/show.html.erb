@@ -1,5 +1,5 @@
 <div>
-<%= form_tag("/groups", method: "get") do %>
+<%= form_tag("/groups/#{@group.id}", method: "get") do %>
 <div>
 <%= text_field_tag(:search, "Search") %>
 </div>
@@ -19,5 +19,19 @@
 <% @members.each do |member| %>
 <div>
 <%= member.username %>
+</div>
+<% end %>
+<div>
+<h3> List </h3>
+</div>
+<% @venues.each do |venue| %>
+<div>
+<%= venue.name %>
+</div>
+<div>
+<%= venue.location %>
+</div>
+<div>
+<hr>
 </div>
 <% end %>
