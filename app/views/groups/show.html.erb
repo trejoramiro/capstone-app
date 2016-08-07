@@ -50,11 +50,15 @@ function getLocation(){
   navigator.geolocation.getCurrentPosition(function(position) {
     console.log(position.coords.latitude);
     console.log(position.coords.longitude);
-    // var data = {
-    //   latitude: position.coords.latitude,
-    //   longitude: position.coords.longitude
-    // };
-  //$.post( "groups/location", data );
+    $.ajax({
+      url: "/groups/location",
+      type: "POST",
+      data: {coordinates: {
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude
+      }},
+      success: function(resp){ console.log("Data successfully saved.")}
+    });
   });
 };
 </script>

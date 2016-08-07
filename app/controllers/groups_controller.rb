@@ -61,6 +61,9 @@ class GroupsController < ApplicationController
   end
 
   def add
-    puts "This route is hit!"
+    puts "*************"
+    puts "Hit the route!"
+    puts "*************"
+
   end
 end
