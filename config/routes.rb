@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   get '/' => "groups#index"
   get '/groups' => "groups#index"
   get '/groups/new' => "groups#new"
-  post '/groups/:group_id/location' => "groups#create"
-  #post '/groups' => "groups#create"
+  post '/groups' => "groups#create"
   get '/groups/:id' => "groups#show"
   get '/groups/:id/edit' => "groups#edit"
   patch '/groups/:id' => "groups#update"
@@ -23,5 +22,7 @@ Rails.application.routes.draw do
 
   get '/votes/:group_id/:event_id' => "votes#show"
   post '/votes/:group_id' => "votes#create"
+
+  post '/locations/:group_id' => "locations#create"
 
 end

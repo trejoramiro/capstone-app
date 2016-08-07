@@ -31,7 +31,7 @@ class GroupsController < ApplicationController
     render 'new.html.erb'
   end
 
-  def add
+  def create
      @group = Group.new(
       name: params[:name],
       location: params[:location])
