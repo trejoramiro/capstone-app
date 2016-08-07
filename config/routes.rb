@@ -19,4 +19,7 @@ Rails.application.routes.draw do
 
   post '/venues/:group_id' => "venues#create"
 
+  get '/votes/:group_id' => "votes#show"
+  post '/votes/:group_id' => "votes#create"
+
 end
