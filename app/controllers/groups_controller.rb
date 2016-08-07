@@ -14,7 +14,6 @@ class GroupsController < ApplicationController
       y = loc[1]
       puts y
       data = Unirest.get("https://api.foursquare.com/v2/venues/search?ll=#{x},#{y}&categoryId=4d4b7105d754a06374d81259&client_id=#{ENV['CLIENT_ID']}&client_secret=#{ENV['CLIENT_SECRET']}&v=20160807").body
-      puts data
       @venues = data["response"]["venues"]
       puts "Hello"
       puts @venues

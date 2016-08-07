@@ -30,8 +30,9 @@
 <div>
 <h3> List </h3>
 </div>
-<% @groups.events.each do |event| %>
-<% @event.venues do |venue| %>
+<% @group.events.each do |event| %>
+<h3><%= event.name %></h3>
+<% event.venues.each do |venue| %>
 <div>
 <%= venue.name %>
 </div>

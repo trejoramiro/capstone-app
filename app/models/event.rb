@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
   belongs_to :group
-  belongs_to :venue, optional: true
+  has_many :venues
   has_many :votes
 
 end

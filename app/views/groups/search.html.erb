@@ -1,11 +1,12 @@
+<%= form_tag("/venues/#{@group.id}", method: "post") do %>
+<%= select("post", "event_id", @group.events.collect {|p| [ p.name, p.id ]}, {include_blank: true}) %>
+
 <% @venues.each do |venue| %>
-<div>
-  <h3><%= venue["name"] %></h3>
-  <p><%= venue["location"]["address"]%></p>
-  <%= form_tag("/venues/#{@group.id}", method: "post") do %>
-  <%= hidden_field_tag  name="venue_name", value = "#{venue["name"]}"%>
-  <%= hidden_field_tag name="location", value = "#{venue["location"]["address"]}" %>
-  <%= submit_tag("Add to Group List") %>
+  <h3><%= venue["name"]%></h3>
+  <p><%= venue["location"]["address"] %></p>
+  <%= check_box_tag 'venue_ids[]' , "#{venue['name']}?#{venue['location']['address']}"%>
   <% end %>
-</div>
+
+
+<%= submit_tag("Add Restaurants to Event") %>
 <% end %>
