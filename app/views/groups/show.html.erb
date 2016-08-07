@@ -30,7 +30,8 @@
 <div>
 <h3> List </h3>
 </div>
-<% @venues.each do |venue| %>
+<% @groups.events.each do |event| %>
+<% @event.venues do |venue| %>
 <div>
 <%= venue.name %>
 </div>
@@ -40,6 +41,7 @@
 <div>
 <hr>
 </div>
+<% end %>
 <% end %>
 
 <script>
