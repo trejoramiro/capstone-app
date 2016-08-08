@@ -26,12 +26,17 @@
 <% end %>
 <div id="map"></div>
 <script>
-      var map;
       function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: <%= @x %>, lng: <%= @y %>},
-          zoom: 8
+        var myLatLng = {lat: <%= @x %>, lng: <%= @y %>};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: myLatLng,
+          zoom: 15
         });
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map
+        });
+        marker.setMap(map);
       }
     </script>
     <script src="<%= @url %>" async defer></script>
