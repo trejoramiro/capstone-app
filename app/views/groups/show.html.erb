@@ -61,7 +61,11 @@ function getLocation(){
         latitude: position.coords.latitude,
         longitude: position.coords.longitude
       }},
-      success: function(resp){ console.log("Data successfully saved.")}
+      success: function(resp){
+
+        console.log("Data successfully saved.");
+        $('input[name=location]').val('Current Location');
+      }
     });
   });
 };

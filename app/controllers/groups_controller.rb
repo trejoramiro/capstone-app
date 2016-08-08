@@ -11,8 +11,8 @@ class GroupsController < ApplicationController
       @group = Group.find_by(id: params[:id])
       @x = loc[0]
       @y = loc[1]
-      data = Unirest.get("https://api.foursquare.com/v2/venues/search?ll=#{@x},#{@y}&categoryId=4d4b7105d754a06374d81259&client_id=#{ENV['CLIENT_ID']}&client_secret=#{ENV['CLIENT_SECRET']}&v=20160807").body
-      @venues = data["response"]["venues"]
+      data = Unirest.get("https://api.foursquare.com/v2/venues/explore?ll=41.895165899999995,-87.6755024&&query=#{params[:search]}&client_id=#{ENV['CLIENT_ID']}&client_secret=#{ENV['CLIENT_SECRET']}&v=20160808").body
+      @venues =  data["response"]["groups"][0]["items"]
       @url = "https://maps.googleapis.com/maps/api/js?key=" + "#{ENV['G_KEY']}" + "&callback=initMap"
       render 'search.html.erb'
     else

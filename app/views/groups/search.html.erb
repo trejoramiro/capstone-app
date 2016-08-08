@@ -16,13 +16,14 @@
 <%= select("post", "event_id", @group.events.collect {|p| [ p.name, p.id ]}, {include_blank: true}) %>
 
 <% @venues.each do |venue| %>
-  <h3><%= venue["name"]%></h3>
-  <p><%= venue["location"]["address"] %></p>
-  <%= check_box_tag 'venue_ids[]' , "#{venue['name']}?#{venue['location']['address']}"%>
+  <h3><%= venue["venue"]["name"]%></h3>
+  <p><%= venue["venue"]["location"]["address"] %></p>
+  <%= check_box_tag 'venue_ids[]' , "#{venue["venue"]['name']}?#{venue["venue"]['location']['address']}"%>
   <% end %>
 
-
+<div>
 <%= submit_tag("Add Restaurants to Event") %>
+</div>
 <% end %>
 <div id="map"></div>
 <script>
@@ -30,13 +31,16 @@
         var myLatLng = {lat: <%= @x %>, lng: <%= @y %>};
         var map = new google.maps.Map(document.getElementById('map'), {
           center: myLatLng,
-          zoom: 15
+          zoom: 14
         });
+        <% @venues.each do |venue| %>
+        var coord = {lat: <%= venue["venue"]["location"]["lat"] %>, lng: <%= venue["venue"]["location"]["lng"] %>}
         var marker = new google.maps.Marker({
-          position: myLatLng,
+          position: coord,
           map: map
         });
         marker.setMap(map);
+        <% end %>
       }
     </script>
     <script src="<%= @url %>" async defer></script>
