@@ -1,13 +1,17 @@
 <div>
 <%= form_tag("/groups/#{@group.id}", method: "get") do %>
 <div>
-<%= text_field_tag(:search, "Search") %>
+<%= text_field_tag(:search) %>
+</div>
+<div>
+<%= text_field_tag(:location, "Enter Your Location") %>
+</div>
+</div>
+<button id="location-button" type="button" onclick="getLocation();">Use My Location</button>
+<div>
+<%= submit_tag("Search") %>
 </div>
 <% end %>
-</div>
-
-<button id="location-button" type="button" onclick="getLocation();">Use My Location</button>
-
 <div>
 <%= @group.id %>
 </div>
