@@ -50,23 +50,23 @@
 <% end %>
 
 <script>
-function getLocation(){
+function getLocation() {
   navigator.geolocation.getCurrentPosition(function(position) {
     console.log(position.coords.latitude);
     console.log(position.coords.longitude);
     $.ajax({
       url: "/locations/41",
       type: "POST",
-      data: { coordinates: {
+      data: {coordinates: {
         latitude: position.coords.latitude,
         longitude: position.coords.longitude
       }},
-      success: function(resp){
+      success: function(resp) {
 
         console.log("Data successfully saved.");
         $('input[name=location]').val('Current Location');
       }
     });
-  });
-};
+  }
+}
 </script>

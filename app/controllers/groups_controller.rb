@@ -7,13 +7,25 @@ class GroupsController < ApplicationController
 
   def show
     if params[:search]
-      loc = Geocoder.coordinates("1920 West Superior St., Chicago, IL")
       @group = Group.find_by(id: params[:id])
-      @x = loc[0]
-      @y = loc[1]
-      data = Unirest.get("https://api.foursquare.com/v2/venues/explore?ll=41.895165899999995,-87.6755024&&query=#{params[:search]}&client_id=#{ENV['CLIENT_ID']}&client_secret=#{ENV['CLIENT_SECRET']}&v=20160808").body
+      if params[:location] == "Enter Your Location" || params[:location] == "Current Location"
+        coordinates = "#{@group.latitude}" + "," + "#{@group.longitude}"
+        @x = @group.latitude
+        @y = @group.longitude
+      else
+        loc = Geocoder.coordinates(params[:location])
+        coordinates = "#{loc[0]}" + "," + "#{loc[1]}"
+        @x = loc[0]
+        @y = loc[1]
+      end
+      puts "**************"
+      puts coordinates
+      data = Unirest.get("https://api.foursquare.com/v2/venues/explore?ll=#{coordinates}&query=#{params[:search]}&client_id=#{ENV['CLIENT_ID']}&client_secret=#{ENV['CLIENT_SECRET']}&v=20160809").body
+      puts data
+      @query = params[:search]
       @venues =  data["response"]["groups"][0]["items"]
       @url = "https://maps.googleapis.com/maps/api/js?key=" + "#{ENV['G_KEY']}" + "&callback=initMap"
+      #binding.pry
       render 'search.html.erb'
     else
       @group = Group.find_by(id: params[:id])

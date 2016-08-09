@@ -12,6 +12,8 @@
       }
     </style>
 
+<h2>Searchs for <%= @query %> </h2>
+
 <%= form_tag("/venues/#{@group.id}", method: "post") do %>
 <%= select("post", "event_id", @group.events.collect {|p| [ p.name, p.id ]}, {include_blank: true}) %>
 
@@ -33,6 +35,11 @@
           center: myLatLng,
           zoom: 14
         });
+        var center = new google.maps.Marker({
+          position: myLatLng,
+          map: map
+        });
+        center.setMap(map);
         <% @venues.each do |venue| %>
         var coord = {lat: <%= venue["venue"]["location"]["lat"] %>, lng: <%= venue["venue"]["location"]["lng"] %>}
         var marker = new google.maps.Marker({
