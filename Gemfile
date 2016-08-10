@@ -34,6 +34,8 @@ gem 'unirest'
 gem 'dotenv-rails', :groups => [:development, :test]
 # Complete geocoding solution for Ruby.
 gem 'geocoder'
+# Official Object-Document-Mapper(ODM) for MongoDB in Ruby
+gem 'mongoid', git: 'https://github.com/mongodb/mongoid.git'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
