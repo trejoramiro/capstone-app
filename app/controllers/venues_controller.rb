@@ -10,7 +10,9 @@ class VenuesController < ApplicationController
         name: venue_string.split("?")[0],
         location: venue_string.split("?")[1],
         group_id: params[:group_id],
-        event_id: params["post"]["event_id"])
+        event_id: params["post"]["event_id"],
+        lat: params[:lat],
+        lng: params[:lng] )
       @venue.save
       index += 1
     end
