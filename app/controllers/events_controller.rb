@@ -15,7 +15,8 @@ class EventsController < ApplicationController
       start_time: date,
       end_time: date,
       description: params[:description],
-      group_id: @group.id
+      group_id: @group.id,
+      are_voting: TRUE
       )
     @event.save
     members = @group.users
@@ -39,11 +40,12 @@ class EventsController < ApplicationController
 
   def update
     @event.assign_attributes({
-      name: params[:name],
-      capacity: params[:capacity],
-      start_time: params[:start_time],
-      end_time: params[:end_time],
-      description: params[:description]
+      name: params[:name] || @event.name,
+      capacity: params[:capacity] || @event.capacity,
+      start_time: params[:start_time] || @event.start_time,
+      end_time: params[:end_time] || @event.end_time,
+      description: params[:description] || @event.description,
+      are_voting: params[:voting] || @event.are_voting
       })
     @event.save
     redirect_to "/groups"
