@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160810232452) do
+ActiveRecord::Schema.define(version: 20160810234819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,11 +57,11 @@ ActiveRecord::Schema.define(version: 20160810232452) do
     t.string   "location"
     t.boolean  "chosen"
     t.integer  "group_id"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "event_id"
-    t.decimal  "lat",        precision: 9, scale: 7
-    t.decimal  "lng",        precision: 9, scale: 7
+    t.string   "lat"
+    t.string   "lng"
   end
 
   create_table "visits", force: :cascade do |t|

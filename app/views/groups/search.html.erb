@@ -14,13 +14,13 @@
 
 <h2>Searchs for <%= @query %> </h2>
 
-<%= form_tag("/venues/#{@group.id}", method: "post") do %>
+<%= form_tag("/venues/#{@group.id}/#{@query}", method: "post") do %>
 <%= select("post", "event_id", @group.events.collect {|p| [ p.name, p.id ]}, {include_blank: true}) %>
 
 <% @venues.each do |venue| %>
   <h3><%= venue["venue"]["name"]%></h3>
   <p><%= venue["venue"]["location"]["address"] %></p>
-  <%= check_box_tag 'venue_ids[]' , "#{venue["venue"]['name']}?#{venue["venue"]['location']['address']}"%>
+  <%= check_box_tag 'venue_ids[]' , "#{venue["venue"]['name']}?#{venue["venue"]['location']['address']}?#{venue["venue"]["location"]["lat"]}?#{venue["venue"]["location"]["lng"]}"%>
   <% end %>
 
 <div>

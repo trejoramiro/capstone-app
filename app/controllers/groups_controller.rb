@@ -18,10 +18,7 @@ class GroupsController < ApplicationController
         @x = loc[0]
         @y = loc[1]
       end
-      puts "**************"
-      puts coordinates
       data = Unirest.get("https://api.foursquare.com/v2/venues/explore?ll=#{coordinates}&query=#{params[:search]}&client_id=#{ENV['CLIENT_ID']}&client_secret=#{ENV['CLIENT_SECRET']}&v=20160809").body
-      puts data
       @query = params[:search]
       @venues =  data["response"]["groups"][0]["items"]
       @url = "https://maps.googleapis.com/maps/api/js?key=" + "#{ENV['G_KEY']}" + "&callback=initMap"
@@ -71,13 +68,8 @@ class GroupsController < ApplicationController
 
   def create
   @group = Group.find_by(id: params[:group_id])
-  puts "***********"
-  puts params["coordinates"]["longitude"].to_f
-  puts params["coordinates"]["latitude"].to_f
-  puts "***********"
   @group.longitude = params["coordinates"]["longitude"].to_f
   @group.latitude = params["coordinates"]["latitude"].to_f
   @group.save
-  puts "Data successfully saved."
   end
 end
