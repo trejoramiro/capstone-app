@@ -1,5 +1,7 @@
 class VenuesController < ApplicationController
 
+before_action :authenticate_user!
+
   def create
     length = params[:venue_ids].length
     index = 0

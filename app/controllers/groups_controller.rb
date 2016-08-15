@@ -1,5 +1,7 @@
 class GroupsController < ApplicationController
 
+before_action :authenticate_user!
+
   def index
       @groups = Group.all
       render 'index.html.erb'
@@ -29,6 +31,20 @@ class GroupsController < ApplicationController
       @members = @group.users
       @venues = @group.venues
       @events = @group.events
+
+      @vote_hash = {}
+      venue_list = []
+      @events.each do |event|
+        @vote_hash[event.id]
+        venue_hash = {}
+        event.venues.each do |venue|
+          votes = venue.votes.count
+          venue_hash[venue.id] = votes
+        end
+        venue_list.push(venue_hash)
+      end
+      @vote_hash[@group.id] = venue_list
+      #binding.pry
       render 'show.html.erb'
     end
   end

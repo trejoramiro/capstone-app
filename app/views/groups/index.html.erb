@@ -1,4 +1,4 @@
 <% @groups.each do |group| %>
-<h1><%= group.id %>. <%= group.name %></h1>
-<p><%= group.location %>
+<h1><%= group.id %>. <a href="/groups/<%= group.id %>"><%= group.name %></a></h1>
+<p><%= group.location %></p>
 <% end %>

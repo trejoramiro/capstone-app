@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   patch '/groups/:id' => "groups#update"
   delete '/groups/:id' => "groups#delete"
 
+  get '/signup' => "users#new"
   get '/users/:id' => "users#show"
+  post '/users' => "users#create"
   get '/users/:id/edit' => "users#edit"
   patch '/users/:id' => "users#update"
 
@@ -25,4 +27,7 @@ Rails.application.routes.draw do
 
   post '/locations/:group_id' => "locations#create"
 
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destory'
 end
