@@ -1,4 +1,44 @@
-<% @groups.each do |group| %>
-<h1><%= group.id %>. <a href="/groups/<%= group.id %>"><%= group.name %></a></h1>
-<p><%= group.location %></p>
-<% end %>
+
+  <!-- Welcome Section Starts -->
+    <section class="welcome section">
+    <!-- Nested Container Starts -->
+      <div class="container">
+      <!-- Welcome Content Starts -->
+        <div class="row">
+          <div class="col-lg-5 col-sm-6 col-xs-12">
+          <!-- Welcome Box Starts -->
+            <div class="welcome-box text-center">
+              <h1 class="text-light">Welcome <br>To FoodBingo!</h1>
+              <p class="spl text-bold">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+              <p>
+                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less.
+              </p>
+              <a href="#" class="btn btn-secondary text-bold text-uppercase animation">More Info</a>
+            </div>
+          <!-- Welcome Box Ends -->
+          </div>
+          <div class="col-lg-7 col-sm-6 col-xs-12">
+            <img src="images/welcome-img1.jpg" alt="Welcome" class="img-responsive img-center">
+          </div>
+        </div>
+      <!-- Welcome Content Ends -->
+      <!-- Food Menu Grid Starts -->
+        <div class="food-menu-grid row text-center">
+        <!-- Food Menu #1 Starts -->
+        <% @groups.each do |group| %>
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="hover-content">
+              <img src="images/menu/thumb/chinese-menu.jpg" alt="chinese" class="img-responsive animation">
+              <div class="overlay animation">
+                <h4 class="text-uppercase"><a href="/groups/<%= group.id %>"><%= group.name %></a></h4>
+                <p><%= group.location %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        </div>
+      <!-- Food Menu Grid Ends -->
+      </div>
+    <!-- Nested Container Ends -->
+    </section>
+  <!-- Welcome Section Ends -->
