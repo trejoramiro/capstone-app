@@ -34,7 +34,9 @@ gem 'unirest'
 gem 'dotenv-rails', :groups => [:development, :test]
 # Complete geocoding solution for Ruby.
 gem 'geocoder'
-# Official Object-Document-Mapper(ODM) for MongoDB in Ruby
+
+# HAML markup language used to cleanly and simply describe HTML
+gem 'haml', '~> 4.0', '>= 4.0.7'
 
 
 # Use Capistrano for deployment
