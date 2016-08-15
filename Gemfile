@@ -34,7 +34,8 @@ gem 'unirest'
 gem 'dotenv-rails', :groups => [:development, :test]
 # Complete geocoding solution for Ruby.
 gem 'geocoder'
-
+# Bootstrap
+gem 'bootstrap', '~> 4.0.0.alpha3.1'
 # HAML markup language used to cleanly and simply describe HTML
 gem 'haml', '~> 4.0', '>= 4.0.7'
 
