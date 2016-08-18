@@ -12,12 +12,10 @@ class VotesController < ApplicationController
     @group = Group.find_by(id: params[:group_id])
     # @venue = @group.venues.where("id = ?", params[:venue])
     # @venue = @group.venues.find_by(id: params[:venue])
-    @members = @group.users
-    @members.each do |member|
-      @vote = Vote.where(event_id: params[:event_id].to_i, user_id: member.id).first
-      @vote.venue_id = params[:venue].to_i
-      @vote.save
-    end
+    @vote = Vote.where(event_id: params[:event_id].to_i, user_id: current_user.id).first
+    @vote.venue_id = params[:venue].to_i
+    @vote.save
+
     redirect_to "/groups/#{@group.id}"
   end
 end
