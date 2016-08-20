@@ -8,8 +8,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:email])
-    if user && user.authenticate(params[:password])
+    user = User.find_by(email: params[:inputEmail])
+    if user && user.authenticate(params[:inputPassword])
       session[:user_id] = user.id
       flash[:success] = 'Successfully logged in!'
       redirect_to '/groups'

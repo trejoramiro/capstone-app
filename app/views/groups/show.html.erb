@@ -1,7 +1,6 @@
-<section class="search-area condensed parallax">
-        <!-- Nested Container Starts -->
-            <div class="container text-center">
-                <h3 class="text-normal">Find the best Restaurants, Cafes &amp; Cuisine in Your Place</h3>
+
+
+
                 <%= form_tag("/groups/#{@group.id}", method: "get", class: 'top-search') do %>
                     <div class="input-group-md">
                         <div class="form-group">
@@ -16,9 +15,6 @@
                         </span>
                     </div>
                 <% end %>
-            </div>
-        <!-- Nested Container Ends -->
-        </section>
 
 <div>
     <%= form_tag("/groups/#{@group.id}", method: "get") do %>

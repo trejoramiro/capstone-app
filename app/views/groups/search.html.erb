@@ -12,6 +12,15 @@
       }
     </style>
 
+<div class="row">
+<h1><%= @query %></h1>
+<%= form_tag("/venues/#{@group.id}/#{@query}", method: "post") do %>
+          <%= select("post", "event_id", @group.events.collect {|p| [ p.name, p.id ]}, {include_blank: false}, :class => 'form-control flat sidearea-filter-sort') %>
+          <% @venues.each do |venue| %>
+          <a href="#"><%= venue["venue"]["name"]%></a>
+          <%= venue["venue"]["location"]["address"] %>
+          <%= check_box_tag 'venue_ids[]' , "#{venue["venue"]['name']}?#{venue["venue"]['location']['address']}?#{venue["venue"]["location"]["lat"]}?#{venue["venue"]["location"]["lng"]}"%>
+</div>
 <div id="map"></div>
 <script>
       function initMap() {
