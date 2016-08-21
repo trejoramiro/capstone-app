@@ -32,4 +32,8 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
+
+  post '/messages' => 'messages#create'
+
+  get '/chatroom' => 'chatrooms#show'
 end

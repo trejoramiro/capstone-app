@@ -5,7 +5,8 @@ class ChatroomsController < ApplicationController
   end
 
   def show
-    @chatroom = Chatroom.find_by(group_id: params[:group_id])
+    @chatroom = Chatroom.find_by(group_id: 41)
     @message = Message.new()
+    render 'show.html.erb'
   end
 end

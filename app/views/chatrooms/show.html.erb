@@ -1,0 +1,10 @@
+<h1>Chatroom</h1>
+<h2><%= @chatroom.id %></h2>
+<% @chatroom.messages.each do |message| %>
+  <%= message.content %> by <%= message.user_id %>
+<% end %>
+<%= form_tag("/messages", method: "post") do %>
+<%= label_tag(:message, "Message") %>
+<%= text_field_tag(:message) %>
+<%= submit_tag("Send") %>
+<% end %>
