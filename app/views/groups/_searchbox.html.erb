@@ -1,0 +1,15 @@
+<%= form_tag("/venues/#{@group.id}", method: "get") do %>
+    <div class="input-group-md">
+            <div class="form-group">
+                <div class="icon-addon addon-lg">
+                    <label class="fa fa-search"></label>
+                    <%= text_field_tag(:search, nil, :class => 'form-control input-lg flat', placeholder: "Search for a Restaurant, Cafes, Cuisine, etc..,") %>
+                    <%= text_field_tag(:location, nil, :class => 'form-control input-lg flat', placeholder: "Enter Your Location", value: "Enter Your Location") %>
+                </div>
+            </div>
+            <span class="input-group-btn">
+            <%= submit_tag("Search", :class => 'btn btn-primary btn-lg') %>
+                <!-- <button class="btn btn-lg btn-secondary animation text-uppercase" type="button">Search</button> -->
+            </span>
+        </div>
+<% end %>

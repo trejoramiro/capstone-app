@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get '/' => 'pages#index'
-  get '/group' => 'groups#index'
+
   get '/groups' => 'groups#index'
   get '/groups/new' => 'groups#new'
   post '/groups' => 'groups#create'
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   patch '/events/:id' => 'events#update'
   delete '/events/:id' => 'events#delete'
 
-  get '/venues' => 'venues#index'
+  get '/venues/:group_id' => 'venues#index'
   post '/venues/:group_id/:search_term' => 'venues#create'
 
   get '/votes/:group_id/:event_id' => 'votes#show'

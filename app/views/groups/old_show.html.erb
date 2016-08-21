@@ -1,0 +1,107 @@
+
+
+
+
+
+
+
+<%= form_tag("/groups/#{@group.id}", method: "get", class: 'top-search') do %>
+                    <div class="input-group-md">
+                        <div class="form-group">
+                            <div class="icon-addon addon-lg">
+                                <label class="fa fa-search"></label>
+                                <%= text_field_tag(:search, nil, :class => 'form-control input-lg flat', placeholder: "Search for a Restaurant, Cafes, Cuisine, etc..,") %>
+                            </div>
+                        </div>
+                        <span class="input-group-btn">
+                        <%= submit_tag("Search", :class => 'btn btn-lg btn-secondary animation text-uppercase') %>
+                            <!-- <button class="btn btn-lg btn-secondary animation text-uppercase" type="button">Search</button> -->
+                        </span>
+                    </div>
+                    <% end %>
+
+<div>
+    <%= form_tag("/groups/#{@group.id}", method: "get") do %>
+        <div>
+            <%= text_field_tag(:search, nil, :class => 'form-control input-lg flat', name: "search-location", placeholder: "Search for a Restaurant, Cafes, Cuisine, etc..,") %>
+        </div>
+        <div>
+            <%= text_field_tag(:location, "Enter Your Location") %>
+        </div>
+</div>
+<button id="location-button" type="button" onclick="getLocation();">Use My Location</button>
+<div>
+   <%= submit_tag("Search", :class => 'btn btn-lg btn-secondary animation text-uppercase') %>
+</div>
+<% end %>
+    <div>
+        <%= @group.id %>
+    </div>
+    <div>
+        <%= @group.name %>
+    </div>
+    <div>
+        <%= @group.location %>
+    </div>
+    <div>
+
+<%= form_tag "/events/#{@group.id}/new", method: :get do %>
+<%= submit_tag "Add New Event" %>
+<% end %>
+
+    <h3>Events</h3>
+    <% @events.each do |event| %>
+        <p>
+            <%= event.name %>
+        </p>
+        <p> Time: </p>
+        <p> Date: </p>
+        <% end %>
+      </div>
+            <h3>Members</h3>
+            <% @members.each do |member| %>
+                <div>
+                    <%= member.username %>
+                </div>
+                <% end %>
+                    <div>
+                        <h3> List </h3>
+                    </div>
+                    <% @group.events.each_with_index do |event, index| %>
+                        <h3><a href="/votes/<%= @group.id %>/<%= event.id %>"><%= event.name %></a></h3>
+                        <% event.venues.each do |venue| %>
+                            <div>
+                                <%= venue.name %>
+                            </div>
+                            <div>
+                                <%= venue.location %>
+                            </div>
+                            <div><%= @vote_hash[@group.id][index][venue.id]%> Votes </div>
+                            <div>
+                                <hr>
+                            </div>
+                            <% end %>
+                                <% end %>
+
+
+<script>
+function getLocation() {
+  navigator.geolocation.getCurrentPosition(function(position) {
+    console.log(position.coords.latitude);
+    console.log(position.coords.longitude);
+    $.ajax({
+      url: "/locations/41",
+      type: "POST",
+      data: {coordinates: {
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude
+      }},
+      success: function(resp) {
+
+        console.log("Data successfully saved.");
+        $('input[name=location]').val('Current Location');
+      }
+    });
+  }
+}
+</script>

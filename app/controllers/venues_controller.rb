@@ -3,9 +3,9 @@ class VenuesController < ApplicationController
   before_action :authenticate_user!
 
  # presents the searches.
- def show
+ def index
    if params[:search]
-     @group = Group.find_by(id: params[:id])
+     @group = Group.find_by(id: params[:group_id])
       if params[:location] == 'Enter Your Location' || params[:location] == 'Current Location'
         coordinates = "#{@group.latitude}" + ',' + "#{@group.longitude}"
         @x = @group.latitude
@@ -19,7 +19,7 @@ class VenuesController < ApplicationController
      data = Unirest.get("https://api.foursquare.com/v2/venues/explore?ll=#{coordinates}&query=#{params[:search]}&client_id=#{ENV['CLIENT_ID']}&client_secret=#{ENV['CLIENT_SECRET']}&v=20160809").body
      @query = params[:search]
      @venues = data['response']['groups'][0]['items']
-     @url = 'https://maps.googleapis.com/maps/api/js?key=' + "#{ENV['G_KEY']}" + '&callback=initMap'
+     @url = 'https://maps.googleapis.com/maps/api/js?key=' + "#{ENV['G_KEY']}" + '&callback=initMap()'
      render 'search.html.erb'
    else
     # make sure to have the html send the group id params

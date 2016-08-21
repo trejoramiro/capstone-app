@@ -9,7 +9,7 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @group = Group.find_by(id: params[:id])
+    @group = Group.find_by(id: current_user.id)
     @members = @group.users
     @venues = @group.venues
     @events = @group.events
