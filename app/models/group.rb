@@ -7,5 +7,6 @@ class Group < ApplicationRecord
   has_many :visits
 
   has_many :events
-end
 
+  has_one :chatroom
+end

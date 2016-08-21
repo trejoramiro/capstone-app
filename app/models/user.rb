@@ -6,5 +6,6 @@ class User < ApplicationRecord
     has_many :votes
     has_many :vists
 
+    has_many :messages
 
 end
