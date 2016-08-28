@@ -1,11 +1,26 @@
 /* global angular */
 
-(function(){
-  "use strict";
+(function() {
+  angular.module('app').controller('messagesCtrl', function($scope, $http) {
 
-  angular.module('app').controller('appCtrl', function($scope){
+    $scope.setUp = function () {
+      console.log("hello");
+      $http.get('/api/v1/messages.json').then(function (response) {
 
-    $scope.name = "Ramiro";
+        $scope.messages = response.data;
+      });
 
+    };
+
+    $scope.createNewMessage = function(inputMessage) {
+      var params = {
+        body: inputMessage
+      };
+      $http.post('/api/v1/messages', params).then(function(response) {
+    
+        $scope.newMessageBody = '';
+      });
+    };
+    window.$scope = $scope;
   });
-}());
+})();

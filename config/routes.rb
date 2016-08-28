@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  mount ActionCable.server => '/cable'
+
+  resources :chatrooms
+  resources :messages
+
   get '/' => 'pages#index'
 
   get '/groups' => 'groups#index'
@@ -33,7 +38,17 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 
+  # get '/messages' => 'messages#index'
   post '/messages' => 'messages#create'
+  # get '/messages/:message_id' => 'messages#show'
 
-  get '/chatroom' => 'chatrooms#show'
+  get '/chatroom' => 'chatrooms#index'
+
+  namespace :api do
+    namespace :v1 do
+      get '/messages' => 'messages#index'
+      post '/messages' => 'messages#create'
+    end
+  end
+
 end

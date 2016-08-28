@@ -1,10 +1,21 @@
-<h1>Chatroom</h1>
-<h2><%= @chatroom.id %></h2>
-<% @chatroom.messages.each do |message| %>
-  <%= message.content %> by <%= message.user_id %>
-<% end %>
-<%= form_tag("/messages", method: "post") do %>
-<%= label_tag(:message, "Message") %>
-<%= text_field_tag(:message) %>
-<%= submit_tag("Send") %>
-<% end %>
+<h1>Chatroom
+    <%= @chatroom.id %></h1>
+<hr>
+<div ng-app="app">
+    <div ng-controller="messagesCtrl" ng-init="setUp()" id="messagesCtrl">
+        <h3>Messages</h3>
+        <hr>
+        <div ng-repeat="message in messages">
+        <p>
+            <b>{{ message.name }}</b>
+            {{ message.body }}</p><hr>
+        </div>
+        <div id="newMessages"></div>
+        <% if current_user %>
+        <form name="newMessageForm">
+          <input type="text" ng-model="newMessageBody"></input>
+          <input type="submit" ng-click="createNewMessage(newMessageBody)"></input>
+        </form>
+        <% end %>
+    </div>
+</div>
