@@ -14,5 +14,5 @@
 //= require jquery_ujs
 //= require angular
 //= require app
-
+//= require materialize-sprockets
 //= require_tree .
