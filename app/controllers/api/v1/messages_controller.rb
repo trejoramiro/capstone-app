@@ -7,9 +7,9 @@ class Api::V1::MessagesController < ApplicationController
       user_id: current_user.id
     )
     ActionCable.server.broadcast 'messages_channel',
-      id:   @message.id,
-      name: @message.user.username,
-      body: @message.content
+        id:   @message.id,
+        name: @message.user.username,
+        body: @message.content
     render 'show.json.jbuilder'
   end
 
