@@ -39,6 +39,8 @@ gem 'bootstrap-sass', '~> 3.2.0'
 # HAML markup language used to cleanly and simply describe HTML
 gem 'haml', '~> 4.0', '>= 4.0.7'
 
+gem 'materialize-sass'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
