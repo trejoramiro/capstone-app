@@ -21,6 +21,7 @@
   "homepage": "https://github.com/trejoramiro/capstone-app#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-ext": "^1.0.0",
     "gulp-jade": "^1.1.0"
   }
 }
