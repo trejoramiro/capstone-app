@@ -6,9 +6,12 @@ class GroupsController < ApplicationController
     user = User.find_by(id: current_user.id)
     @groups = user.groups
     @members = {}
+    @events = {}
     @groups.each do |group|
       @members[group.id.to_s] = group.users.limit(2)
+      @events [group.id.to_s] = group.events.order(:start_time).first
     end
+    # binding.pry
     render 'index.html.erb'
   end
 
