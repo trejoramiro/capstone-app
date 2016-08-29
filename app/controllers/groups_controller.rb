@@ -18,12 +18,13 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find_by(id: current_user.id)
     @members = @group.users
-    @venues = @group.venues
     @events = @group.events
 
-    @vote_hash = {}
     venue_list = []
+    @vote_hash = {}
+    @venues = {}
     @events.each do |event|
+        @venues[event.id.to_s] = event.venues
         @vote_hash[event.id]
       venue_hash = {}
       event.venues.each do |venue|
