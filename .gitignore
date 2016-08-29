@@ -15,6 +15,10 @@
 
 # Ignore environment variables
 .env
+.eslintrc.js
+gulpfile.js
+/jade-files/*
+/node_modules/*
 
 # Ignore Byebug command history file.
 .byebug_history
