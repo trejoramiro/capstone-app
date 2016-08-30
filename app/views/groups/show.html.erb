@@ -3,7 +3,7 @@
   <div class="col s12">
     <h3>Search for a Venue</h3>
   </div>
-  <div class="col s12">
+  <div class="col s9">
     <h4>Events</h4><% @events.each do |event| %>
     <div class="card">
       <div class="card-content"><span class="card-title"><%= event.name %></span>
@@ -18,5 +18,23 @@
       </div>
       <div class="card-action"><a href="#" class="waves-effect waves-light btn">Vote</a></div>
     </div><% end %>
+  </div>
+  <div class="col s3">
+    <h5>Chatroom</h5>
+    <div ng-app="app">
+      <div ng-controller="messagesCtrl" ng-init="setUp()" id="messagesCtrl">
+        <div ng-repeat="message in messages">
+          <p>{{ message.name }}</p>
+          <p>{{ message.body }}</p>
+        </div>
+      </div>
+    </div>
+    <form name="newMessageForm">
+      <div class="input-field">
+        <textarea id="textarea1" ng-model="newMessageBody" class="materialize-textarea"></textarea>
+        <label for="textarea1">Message</label>
+      </div>
+      <input type="submit" ng-click="createNewMessage(newMessageBody)" class="waves-effect waves-light btn"/>
+    </form>
   </div>
 </div>
