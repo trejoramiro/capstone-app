@@ -1,22 +1,30 @@
 # Groups Controller #
 class GroupsController < ApplicationController
-    before_action :authenticate_user!
+  before_action :authenticate_user!
 
   def index
-      user = User.find_by(id: current_user.id)
+    user = User.find_by(id: current_user.id)
     @groups = user.groups
+    @members = {}
+    @events = {}
+    @groups.each do |group|
+      @members[group.id.to_s] = group.users.limit(2)
+      @events [group.id.to_s] = group.events.order(:start_time).first
+    end
+    # binding.pry
     render 'index.html.erb'
   end
 
   def show
-      @group = Group.find_by(id: current_user.id)
+    @group = Group.find_by(id: current_user.id)
     @members = @group.users
-    @venues = @group.venues
     @events = @group.events
 
-    @vote_hash = {}
     venue_list = []
+    @vote_hash = {}
+    @venues = {}
     @events.each do |event|
+        @venues[event.id.to_s] = event.venues
         @vote_hash[event.id]
       venue_hash = {}
       event.venues.each do |venue|

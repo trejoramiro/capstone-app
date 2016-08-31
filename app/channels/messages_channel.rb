@@ -1,3 +1,4 @@
+# Messages Channel
 class MessagesChannel < ApplicationCable::Channel
   def subscribed
     # Subscribe to messages channel on server side
@@ -6,5 +7,4 @@ class MessagesChannel < ApplicationCable::Channel
 
   def unsubscribed
   end
-
 end

@@ -1,0 +1,27 @@
+{
+  "name": "capstone-app",
+  "version": "1.0.0",
+  "description": "Capstone Project for bootcamp.",
+  "main": ".eslintrc.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trejoramiro/capstone-app.git"
+  },
+  "author": "Ramiro Trejo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trejoramiro/capstone-app/issues"
+  },
+  "homepage": "https://github.com/trejoramiro/capstone-app#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-ext": "^1.0.0",
+    "gulp-jade": "^1.1.0"
+  }
+}

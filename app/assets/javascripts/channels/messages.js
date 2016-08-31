@@ -1,6 +1,6 @@
+/* global App */
 App.messages = App.cable.subscriptions.create('MessagesChannel', {
     connected: function() {
-        console.log("connected");
     },
 
     received: function(data) {
@@ -13,7 +13,6 @@ App.messages = App.cable.subscriptions.create('MessagesChannel', {
     },
 
     disconnected: function() {
-        console.log("disconnected");
     }
 
 });

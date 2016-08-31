@@ -10,6 +10,6 @@ class ChatroomsController < ApplicationController
         # make a call to the messages controller to obtain all the messages
         @messages = @chatroom.messages
         # binding.pry
-        render 'show.html.erb'
+        render 'show.html'
     end
 end
