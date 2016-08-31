@@ -2,6 +2,22 @@
 <div class="row"> 
   <div class="col s12">
     <h3>Search for a Venue</h3>
+    <div class="col s4">
+      <div class="row">
+        <div class="col s12">
+          <div class="col s10">
+            <input type="text" ng-model="searchQuery" placeholder="Keyword"/>
+          </div>
+          <div class="col s2"><i class="material-icons">search</i></div>
+        </div>
+      </div>
+    </div>
+    <div class="col s4">
+      <input type="text" ng-model="location" placeholder="Location"/><a class="waves-effect waves-teal btn-flat">Get My Location</a>
+    </div>
+    <div class="col s4">
+      <input type="submit" ng-click="" class="waves-effect waves-light btn"/>
+    </div>
   </div>
   <div class="col s9">
     <h4>Events</h4><% @events.each do |event| %>
