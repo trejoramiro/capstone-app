@@ -41,6 +41,8 @@ gem 'haml', '~> 4.0', '>= 4.0.7'
 
 gem 'materialize-sass'
 
+gem 'd3-rails'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

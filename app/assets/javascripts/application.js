@@ -15,4 +15,5 @@
 //= require angular
 //= require app
 //= require materialize-sprockets
+//= require d3
 //= require_tree .
