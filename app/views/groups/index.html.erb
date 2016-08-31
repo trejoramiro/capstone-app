@@ -1,6 +1,6 @@
 
 <div class="row">
-  <div class="col s12"> 
+  <div class="col s12">
     <div class="card horizontal">
       <div class="card-image"></div><img src="#"/>
       <div class="card-stacked">
@@ -28,7 +28,7 @@
         <ul class="collection">
           <% members = @members[group.id.to_s] %>
           <% members.each do |member| %>
-          <li class="collection-item avatar"><img src="/<%= member.profile_img %>" class="circle"/><span class="title"><%= member.username %> </span>
+          <li class="collection-item avatar"><%= image_tag("model-004.png") %><span class="title"><%= member.username %> </span>
           </li><% end %>
         </ul><a href="/groups/<%= group.id %>">View More... </a>
       </div>

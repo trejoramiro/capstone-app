@@ -24,17 +24,14 @@
     <div ng-app="app">
       <div ng-controller="messagesCtrl" ng-init="setUp()" id="messagesCtrl">
         <div ng-repeat="message in messages">
-          <p>{{ message.name }}</p>
-          <p>{{ message.body }}</p>
+          <p> <b>{{ message.name }} </b>{{ message.body }}</p>
         </div>
+        <div id="newMessages"></div>
+        <form name="newMessageForm">
+          <input type="text" ng-model="newMessageBody" class="materialize-textarea"/>
+          <input type="submit" ng-click="createNewMessage(newMessageBody)" class="waves-effect waves-light btn"/>
+        </form>
       </div>
     </div>
-    <form name="newMessageForm">
-      <div class="input-field">
-        <textarea id="textarea1" ng-model="newMessageBody" class="materialize-textarea"></textarea>
-        <label for="textarea1">Message</label>
-      </div>
-      <input type="submit" ng-click="createNewMessage(newMessageBody)" class="waves-effect waves-light btn"/>
-    </form>
   </div>
 </div>

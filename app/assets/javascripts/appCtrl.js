@@ -13,6 +13,7 @@
             };
             $http.post('/api/v1/messages', params).then(function(response) {
                 $scope.newMessageBody = '';
+                $scope.messages.splice(0,1);
             });
         };
         window.$scope = $scope;

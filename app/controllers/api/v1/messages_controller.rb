@@ -14,7 +14,7 @@ class Api::V1::MessagesController < ApplicationController
   end
 
   def index
-    @messages = Chatroom.find_by(id: 1).messages
+    @messages = Chatroom.find_by(id: 1).messages.last(12)
     'index.json.jbuilder'
   end
 end
