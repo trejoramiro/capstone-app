@@ -1,6 +1,6 @@
 
 <div class="row">
-  <div class="col s12">
+  <div class="col s12"> 
     <div class="card horizontal">
       <div class="card-image"></div><img src="#"/>
       <div class="card-stacked">
@@ -24,13 +24,11 @@
         <p><%= @events[group.id.to_s].start_time %></p>
       </div>
       <div class="card-action">
-        <p class="white-text">Members</p>
-        <ul class="collection">
-          <% members = @members[group.id.to_s] %>
-          <% members.each do |member| %>
-          <li class="collection-item avatar"><%= image_tag("model-004.png") %><span class="title"><%= member.username %> </span>
-          </li><% end %>
-        </ul><a href="/groups/<%= group.id %>">View More... </a>
+        <p class="white-text">Members</p><% members = @members[group.id.to_s] %>
+        <% members.each do |member| %>
+        <div class="chip"><% url = member.profile_img %>
+          <%= image_tag(url) %> <%= member.username %> 
+        </div><% end %><a href="/groups/<%= group.id %>">View More... </a>
       </div>
     </div><% end %>
   </div>
