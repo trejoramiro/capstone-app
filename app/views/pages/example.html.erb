@@ -44,7 +44,7 @@ d3.json("http://localhost:3000/api/v1/circles", function(error, root) {
   if (error) throw error;
 
   //console.log(JSON.stringify(classes(root)))
-  console.log(JSON.stringify(root))
+  // console.log(JSON.stringify(root))
 
   var node = svg.selectAll(".node")
       .data(bubble.nodes(root)
@@ -57,9 +57,19 @@ d3.json("http://localhost:3000/api/v1/circles", function(error, root) {
   node.append("title")
       .text(function(d) { return d.className + ": " + format(d.value); });
 
-  node.append("circle")
-      .attr("r", function(d) { return d.r; })
-      .style("fill", function(d) { return color(d.packageName); })
+  var circles = node.append("circle")
+      .attr("r", 0)
+      //.attr("r", function(d) {
+      //return d.r; })
+
+// console.log(node.selectAll("g")[0])
+
+      circles
+        .transition()
+        .duration(1000)
+          .attr("r", function(d) { return d.r })
+
+      node.style("fill", function(d) { return color(d.packageName); })
       .on("mouseover", function(d, i) {
 
         d3.select(".tooltip h2").text(function(){return d.className })
@@ -77,6 +87,8 @@ d3.json("http://localhost:3000/api/v1/circles", function(error, root) {
       .on("click", function(){
         console.log("I have been clicked.")
       })
+
+
 
   // node.append("text")
   //     .attr("dy", ".3em")
