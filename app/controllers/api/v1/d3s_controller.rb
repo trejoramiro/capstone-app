@@ -39,16 +39,27 @@ class Api::V1::D3sController < ApplicationController
       last = last - 1
     end
 
+    max = @data[0][2]
+    min =  @data[-1][2]
+    mid =  (max + min)/ 2
+
+    # binding.pry
     @data.each do |data|
       hash = {
-        "packageName" => data[0],
+        # "packageName" => data[0],
         "name" => data[1],
         "distance" => data[2]
       }
+      if data[2] <= mid
+          hash["packageName"] = "scale"
+      else
+         hash["packageName"] = "cluster"
+      end
       @venues.push(hash)
     end
-
-    @venues = @venues.shuffle 
+    first = @venues.shift
+    @venues = @venues.shuffle
+    @venues.insert(0, first)
     # binding.pry
     render 'index.json.jbuilder'
   end
