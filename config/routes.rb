@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :messages
 
   get '/' => 'pages#index'
+  get '/example' => 'pages#example'
 
   get '/groups' => 'groups#index'
   get '/groups/new' => 'groups#new'
@@ -48,6 +49,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       get '/messages' => 'messages#index'
       post '/messages' => 'messages#create'
+
+      get '/circles' => 'd3s#index'
     end
   end
 

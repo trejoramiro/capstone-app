@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+text {
+  font: 10px sans-serif;
+}
+
+</style>
+<body>
+  <p></p>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script>
+
+var center = [41.895273,-87.67545799999999];
+
+var diameter = 960,
+    format = d3.format(",d"),
+    color = d3.scale.category20c();
+
+var bubble = d3.layout.pack()
+    .sort(null)
+    .size([diameter, diameter])
+    .padding(1.5);
+
+var svg = d3.select("body").append("svg")
+    .attr("width", diameter)
+    .attr("height", diameter)
+    .attr("class", "bubble");
+
+d3.json("http://localhost:3000/api/v1/circles", function(error, root) {
+  if (error) throw error;
+  // root is an object built by d3 that houses our data
+  // console.log(root);
+  // console.log(classes(root))
+  distance(root);
+
+
+
+  console.log(bubble.nodes(root))
+
+  var node = svg.selectAll(".node")
+      .data(bubble.nodes(root))
+    .enter().append("g")
+    .attr("class", "node")
+    .attr("transform", function(d) { console.log(d.lat); return "translate(" + d.x + "," + d.y + ")"; });
+
+
+  node.append("title")
+      .text(function(d) {
+        return d.name ; });
+
+  node.append("circle")
+      .attr("r", 20)
+      .style("fill", "red");
+
+// appends the text of the data
+  node.append("text")
+      .style("text-anchor", "middle")
+      .text(function(d) { return d.name; });
+
+
+});
+
+// Returns a flattened hierarchy containing all leaf nodes under the root.
+// takes the json data stored in root and transforms it into a tree structure down to an array.
+function classes(root) {
+  var classes = [];
+
+  // they are using recursion to flattened the tree
+  function recurse(name, node) {
+    if (node.children) node.children.forEach(function(child) { recurse(node.name, child); });
+    else classes.push({packageName: name, className: node.name, value: node.size});
+  }
+
+  recurse(null, root);
+  return {children: classes};
+}
+
+function distance(root){
+  return root.map( function(d) {
+    var distance = Math.sqrt(Math.pow((center[0] - d.lat),2) + Math.pow((center[1] - d.lng),2));
+    d.value = Math.round((distance * 1000000));
+    return d
+  })
+}
+
+d3.select(self.frameElement).style("height", diameter + "px");
+
+</script>

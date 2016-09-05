@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+circle {
+    fill: rgb(31, 119, 180);
+    fill-opacity: .25;
+    stroke: rgb(31, 119, 180);
+    stroke-width: 1px;
+  }
+  .leaf circle {
+    fill: #ff7f0e;
+    fill-opacity: 1;
+  }
+  text {
+    font: 10px sans-serif;
+  }
+
+</style>
+<body>
+  <p></p>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script>
+
+var center = [41.895273,-87.67545799999999];
+
+var diameter = 510;
+
+var bubble = d3.layout.pack()
+    .sort(null)
+    .value(function(d) {
+      return d.distance;
+    })
+    .size([diameter, diameter]);
+
+    var canvas = d3.select("body").append("svg")
+        .attr("width", diameter)
+        .attr("height", diameter)
+        .append("g");
+
+d3.json("http://localhost:3000/api/v1/circles", function(error, root) {
+  if (error) throw error;
+
+console.log(JSON.stringify(root))
+ var nodes = bubble.nodes(distance(root));
+ console.log(nodes);
+
+  var node = canvas.selectAll(".node")
+       .data(nodes)
+       .enter()
+       .append("g")
+       .atrr("class", "node")
+       .attr("transform", function(d) {
+         return "translate(" + d.x + "," + d.y + ")"
+       });
+
+       node.append("circle")
+         .attr("r", function(d) { return d.r; });
+
+  });
+
+
+
+function distance(root){
+  return root.map( function(d) {
+    var distance = Math.sqrt(Math.pow((center[0] - d.lat),2) + Math.pow((center[1] - d.lng),2));
+    d.distance = Math.round((distance * 1000000));
+    return d
+  })
+}
+
+</script>
