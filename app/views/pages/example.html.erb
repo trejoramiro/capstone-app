@@ -16,12 +16,23 @@ text {
 }
 </style>
 <body>
+  <div class="row">
+  <div class="col s12">
+  <div class="col s6 offset-s6">
+      <a class="waves-effect waves-light btn">Distance</a>
+      <a class="waves-effect waves-light btn">Rating</a>
+</div>
+</div>
+</div>
+
   <div class="tooltip">
     <h2></h2>
     <p>Location</p>
     <p>Hours</p>
     <p>Rating</p>
   </div>
+ <div class="col s12" id="myGraph">
+ </div>
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
 
@@ -34,7 +45,7 @@ var bubble = d3.layout.pack()
     .size([diameter, diameter])
     .padding(1.5);
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#myGraph").append("svg")
     .attr("width", diameter)
     .attr("height", diameter)
     .attr("class", "bubble");
