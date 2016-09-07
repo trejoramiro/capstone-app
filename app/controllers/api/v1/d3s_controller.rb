@@ -16,7 +16,7 @@ class Api::V1::D3sController < ApplicationController
     @data =  []
     venues_data.each do |data|
       distance = (Math.sqrt( ((data['venue']['location']['lat'] - center[0])**2) + ((data['venue']['location']['lng'] - center[1])**2)) * 1000000).round
-      my_data = [ 'cluster', data['venue']['name'], distance]
+      my_data = [ 'cluster', data['venue']['name'], distance, data['venue']['location']['address'],data['venue']['rating'] ]
       @data.push(my_data)
       # hash = {
       #   "packageName" => "cluster",
