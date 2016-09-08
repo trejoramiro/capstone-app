@@ -19,8 +19,8 @@ text {
   <div class="row">
   <div class="col s12">
   <div class="col s6 offset-s6">
-      <a class="waves-effect waves-light btn">Distance</a>
-      <a class="waves-effect waves-light btn">Rating</a>
+      <a class="waves-effect waves-light btn" id="distanceButton" onclick="">Distance</a>
+      <a class="waves-effect waves-light btn" id="ratingButton">Rating</a>
 </div>
 </div>
 </div>
@@ -55,8 +55,38 @@ d3.json("http://localhost:3000/api/v1/circles", function(error, root) {
   if (error) throw error;
 
   //console.log(JSON.stringify(classes(root)))
-  // console.log(JSON.stringify(root))
+  console.log(JSON.stringify(root))
+  // console.log(root["children"])
 
+/////
+  var new_root = jQuery.extend(true, {}, root)
+  for(value in new_root["children"]){
+    var swap_value = new_root["children"][value].value
+    new_root["children"][value].value = new_root["children"][value].value2
+    new_root["children"][value].value2 = swap_value
+  }
+
+var node2 = svg.selectAll(".node1")
+      .data(bubble.nodes(new_root)
+      .filter(function(d) { return !d.children; }))
+    .enter().append("g")
+      .attr("class", "node1")
+      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+
+var circles2 = node2.append("circle")
+    .attr("r", 0)
+    .style("block", "none")
+
+    circles2
+      .transition()
+      .duration(1000)
+        .attr("r", function(d) { return d.r })
+
+    node2.append("title")
+            .text(function(d) { return d.className + ": " + format(d.value); });
+  $(".node1").hide();
+
+///////
   var node = svg.selectAll(".node")
       .data(bubble.nodes(root)
       .filter(function(d) { return !d.children; }))
@@ -70,10 +100,7 @@ d3.json("http://localhost:3000/api/v1/circles", function(error, root) {
 
   var circles = node.append("circle")
       .attr("r", 0)
-      //.attr("r", function(d) {
-      //return d.r; })
 
-// console.log(node.selectAll("g")[0])
 
       circles
         .transition()
@@ -100,7 +127,46 @@ d3.json("http://localhost:3000/api/v1/circles", function(error, root) {
       })
 
 
+      d3.select("#ratingButton")
+        .on("click", function() {
 
+          var hiddenCircles = document.getElementsByClassName("node1");
+
+          var visibleCircles = document.getElementsByClassName("node");
+
+          var myArray = []
+
+          for(var i = 0; i < hiddenCircles.length; i++) {
+            radius = hiddenCircles[i].childNodes[0].getAttribute("r");
+            myArray.push(radius);
+          }
+
+
+          circles
+            .transition()
+            .duration(1000)
+              .attr("r", function(d, index) { d.r = myArray[index]; return d.r })
+        })
+
+      d3.select("#distanceButton")
+          .on("click", function() {
+
+            var hiddenCircles = document.getElementsByClassName("node1");
+
+            var visibleCircles = document.getElementsByClassName("node");
+
+            var myArray = []
+
+            for(var i = 0; i < visibleCircles.length; i++) {
+              radius = hiddenCircles[i].childNodes[0].getAttribute("r");
+              myArray.push(radius);
+            }
+
+            circles
+                .transition()
+                .duration(1000)
+                .attr("r", function(d) { return d.r })
+          })
   // node.append("text")
   //     .attr("dy", ".3em")
   //     .style("text-anchor", "middle")
@@ -119,6 +185,7 @@ function classes(root) {
   recurse(null, root);
   return {children: classes};
 }
+
 
 d3.select(self.frameElement).style("height", diameter + "px");
 

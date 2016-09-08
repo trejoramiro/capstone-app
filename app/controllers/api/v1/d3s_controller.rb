@@ -16,7 +16,7 @@ class Api::V1::D3sController < ApplicationController
     @data =  []
     venues_data.each do |data|
       distance = (Math.sqrt( ((data['venue']['location']['lat'] - center[0])**2) + ((data['venue']['location']['lng'] - center[1])**2)) * 1000000).round
-      my_data = [ 'cluster', data['venue']['name'], distance, data['venue']['location']['address'],data['venue']['rating'] ]
+      my_data = [ 'cluster', data['venue']['name'], distance, data['venue']['location']['address'], data['venue']['rating'] ]
       @data.push(my_data)
       # hash = {
       #   "packageName" => "cluster",
@@ -43,12 +43,29 @@ class Api::V1::D3sController < ApplicationController
     min =  @data[-1][2]
     mid =  (max + min)/ 2
 
+    # compute values for rating
     # binding.pry
+    @data.each do |row|
+      if row[4]
+        if row[4] >= 8.0
+          product = (row[4] * 1500).round
+          row << product
+        else
+          product = (row[4] * 150).round + 1000
+          row << product
+        end
+      else
+        row[4] = 100
+      end
+    end
+
     @data.each do |data|
       hash = {
         # "packageName" => data[0],
         "name" => data[1],
-        "distance" => data[2]
+        "distance" => data[2],
+        "rating" => data[4],
+        "value2" => data[5]
       }
       if data[2] <= mid
           hash["packageName"] = "scale"
@@ -57,10 +74,11 @@ class Api::V1::D3sController < ApplicationController
       end
       @venues.push(hash)
     end
+    # binding.pry
     first = @venues.shift
     @venues = @venues.shuffle
     @venues.insert(0, first)
-    # binding.pry
+
     render 'index.json.jbuilder'
   end
 end
