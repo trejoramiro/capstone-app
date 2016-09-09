@@ -15,3 +15,26 @@
  */
 
 @import "materialize";
+
+#profile-img {
+  width: 10%;
+  height: 10%;
+}
+
+.z-depth-1,
+nav,
+.card-panel,
+.card,
+.toast,
+.btn,
+.btn-large,
+.btn-floating,
+.dropdown-content,
+.collapsible,
+.side-nav {
+  box-shadow: none;
+}
+
+body {
+  background-color: #F6FBFC;
+}

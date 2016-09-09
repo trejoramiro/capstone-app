@@ -22,25 +22,19 @@ var getLocation = function() {
 
 var initMap = function() {
     //make a get request to the server and return json data
+    
     var myLatLng = {
-        lat: 34,
-        lng: 32
+        lat: -34.397,
+        lng: 150.644
     };
     var map = new google.maps.Map(document.getElementById('map'), {
         center: myLatLng,
-        zoom: 14
+        zoom: 8
     });
     var center = new google.maps.Marker({
         position: myLatLng,
         map: map
     });
     center.setMap(map);
-    // <% @venues.each do |venue| %>
-    // var coord = {lat: <%= venue["venue"]["location"]["lat"] %>, lng: <%= venue["venue"]["location"]["lng"] %>}
-    // var marker = new google.maps.Marker({
-    //   position: coord,
-    //   map: map
-    // });
-    // marker.setMap(map);
-    // <% end %>
+    console.log("hello")
 }
