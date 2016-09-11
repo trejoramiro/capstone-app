@@ -52,6 +52,11 @@ function initMap() {
 
     $('.button-collapse').sideNav();
 
+    $(document).ready(function(){
+      $('.parallax').parallax();
+    });
+    
+
   });
 })(jQuery);
   // Initialize collapsible (uncomment the line below if you use the dropdown variation)
