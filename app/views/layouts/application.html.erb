@@ -39,10 +39,27 @@
   </nav>
 
     <div class="container">
+      <ul id="slide-out" class="side-nav">
+        <li><div class="userView">
+          <a href="#!user"><%= image_tag(current_user.profile_img, id: "profile-img") %></a>
+          <a href="#!name"><span class="name"><%= current_user.username %></span></a>
+          <a href="#!email"><span class="email"><%= current_user.email %></span></a>
+        </div></li>
+        <li><div class="divider"></div></li>
+        <li><a href="/groups">Home</a></li>
+        <% current_user.groups.each do |group| %>
+        <li><a href="/groups/<%= group.id %>"><%= group.name %></a></li>
+        <% group.events.each do |event| %>
+        <li><a class="subheader"><%= event.name  %></a></li>
+        <% end %>
+        <% end %>
+      </ul>
+      <a href="#" data-activates="slide-out" class="button-collapse" onclick="slideOut()"><i class="material-icons">menu</i></a>
         <%= yield %>
     </div>
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 
   </body>
 </html>

@@ -1,3 +1,4 @@
+/* global $ */
 var getLocation = function() {
     navigator.geolocation.getCurrentPosition(function(position) {
         console.log(position.coords.latitude);
@@ -43,3 +44,20 @@ function initMap() {
 
 
 }
+
+
+// Initialize collapse button
+(function($){
+  $(function() {
+
+    $('.button-collapse').sideNav();
+
+  });
+})(jQuery);
+  // Initialize collapsible (uncomment the line below if you use the dropdown variation)
+  //$('.collapsible').collapsible();
+
+//   // Show sideNav
+// $('.button-collapse').sideNav('show');
+//   // Hide sideNav
+// $('.button-collapse').sideNav('hide');
