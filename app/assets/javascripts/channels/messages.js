@@ -9,6 +9,7 @@ App.messages = App.cable.subscriptions.create('MessagesChannel', {
         // $("#newMessages").append(message);
         var $scope = angular.element(document.getElementById('messagesCtrl')).scope();
         $scope.messages.push(data);
+        $scope.messages.splice(0,1);
         $scope.$apply();
     },
 
