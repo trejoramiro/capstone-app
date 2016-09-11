@@ -20,21 +20,26 @@ var getLocation = function() {
     })
 }
 
-var initMap = function() {
-    //make a get request to the server and return json data
-    
-    var myLatLng = {
-        lat: -34.397,
-        lng: 150.644
-    };
-    var map = new google.maps.Map(document.getElementById('map'), {
-        center: myLatLng,
-        zoom: 8
+function initMap() {
+
+    $.get("/api/v1/maps.json", function (data) {
+
+      var map;
+      for(var i = 0; i < data.data.length; i++) {
+
+        var id = data.data[i].id;
+        var idString = id.toString();
+        console.log(idString)
+        map = new google.maps.Map(document.getElementById(idString), {
+            center: {lat: -34.397, lng: 150.644},
+            zoom: 8
+            });
+      }
+
+    // var array = JSON.stringify(data)
+    // console.log(data.data.length)
+
     });
-    var center = new google.maps.Marker({
-        position: myLatLng,
-        map: map
-    });
-    center.setMap(map);
-    console.log("hello")
+
+
 }

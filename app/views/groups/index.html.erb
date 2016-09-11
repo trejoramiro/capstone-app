@@ -1,19 +1,8 @@
-<style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 500px;
-        width: 500px;
-      }
-    </style>
 
 <div class="row">
-  <div class="col s12">
+  <div class="col s12"> 
     <div class="card horizontal">
-      <div class="card-image"></div><img src="#"/>
+      <div class="card-image"></div>
       <div class="card-stacked">
         <h4>Don't Miss These Places For Next Meetup</h4>
         <div class="card-content">
@@ -23,8 +12,7 @@
       </div>
     </div>
   </div>
-  <div class="col s6"><a href="/events/:group_id/new" class="waves-effect waves-light btn">Create New Event</a></div>
-  <div class="col s6"><a href="/events/:group_id/new" class="waves-effect waves-light btn">Create Group  </a></div>
+  <div class="col s6"><a href="/groups/new" class="waves-effect waves-light btn">Create Group  </a></div>
   <div class="col s12"><% @groups.each do |group| %>
     <div class="card white">
       <div class="card-content"><span class="card-title"> <b><%= group.name %></b></span>
@@ -35,22 +23,13 @@
       </div>
       <div class="card-action">
         <p class="white-text">Members</p><% members = @members[group.id.to_s] %>
-        <% members.each do |member| %>
-        <div><% url = member.profile_img %>
+        <div class="row"></div><% members.each do |member| %>
+        <div class="col s1"><% url = member.profile_img %>
           <%= image_tag(url, id: "profile-img") %>
         </div><% end %><a href="/groups/<%= group.id %>">View More... </a>
+        <div id="<%= group.id %>" style="width:500px; height:500px; position: relative; overflow: hidden; background-color: rgb(229, 227,223); z-index:0"></div>
       </div>
-      <ul data-collapsible="accordion" class="collapsible">
-        <li>
-          <div class="collapsible-header"> <i class="material-icons">room</i><i class="material-icons">message</i></div>
-          <div class="collapsible-body">
-            <p>Info </p>
-          </div>
-        </li>
-      </ul>
     </div><% end %>
   </div>
 </div>
-<div id="map"></div>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2befpXoTzB-CRHpgs4tMajZi3_VSGikg&callback=initMap"
-async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['G_KEY'] %>&callback=initMap"> </script>

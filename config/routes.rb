@@ -54,6 +54,8 @@ Rails.application.routes.draw do
       post '/messages' => 'messages#create'
 
       get '/circles' => 'd3s#index'
+
+      get '/maps' => 'maps#index'
     end
   end
 
