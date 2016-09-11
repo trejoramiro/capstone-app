@@ -29,9 +29,11 @@
     <div class="nav-wrapper">
       <a href="#" class="brand-logo">Meetuply</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <% if current_user %>
         <li><a href="#"><i class="material-icons">chat_bubble</i></a></li>
         <li><a href="#"><%= current_user.username %></a></li>
         <li><%= image_tag(current_user.profile_img, id: "profile-img") %></li>
+        <% end %>
       </ul>
     </div>
   </nav>

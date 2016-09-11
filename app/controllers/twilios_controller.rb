@@ -48,6 +48,24 @@ def reply
         body: "You voted for " + message[1]
       )
 
+    elsif message[0].upcase == "MS"
+      group = message[1]
+      body = ""
+      len = message.length
+      message[2..len].each do |str|
+        body = body + str + " "
+      end
+      @message = Message.create(
+        content: body,
+        chatroom_id: 1,
+        user_id: 41
+      )
+
+      ActionCable.server.broadcast 'messages_channel',
+          id:   @message.id,
+          name: @message.user.username,
+          body: @message.content
+
     else
     @client.messages.create(
       from: ENV['TWILIO_NUM'],
