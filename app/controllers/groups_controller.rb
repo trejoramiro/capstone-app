@@ -34,6 +34,7 @@ class GroupsController < ApplicationController
       venue_list.push(venue_hash)
     end
     @vote_hash[@group.id] = venue_list
+    @venue_list = venue_list
     # binding.pry
     render 'show.html.erb'
   end

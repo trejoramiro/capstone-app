@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   post '/venues/:group_id/:search_term' => 'venues#create'
 
   get '/votes/:group_id/:event_id' => 'votes#show'
-  post '/votes/:group_id' => 'votes#create'
+  post '/votes/:group_id' => 'votes#update'
 
   post '/locations/:group_id' => 'locations#create'
 

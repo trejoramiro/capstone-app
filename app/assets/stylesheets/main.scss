@@ -1,0 +1,80 @@
+#profile-img {
+}
+
+.z-depth-1,
+nav,
+.card-panel,
+.card,
+.toast,
+.btn,
+.btn-large,
+.btn-floating,
+.dropdown-content,
+.collapsible,
+.side-nav {
+  box-shadow: none;
+}
+
+body {
+  background-color: #FDF7FF;
+}
+
+.calendar-heading {
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.simple-calendar {
+
+  .day {
+    border: 1px solid #ccc;
+    line-height: 22px;
+    text-align: left;
+  }
+
+  .wday-0 {}
+  .wday-1 {}
+  .wday-2 {}
+  .wday-3 {}
+  .wday-4 {}
+  .wday-5 {}
+  .wday-6 {}
+
+  .today {
+    background-color: #d3d3d3;
+  }
+  .past {}
+  .future {}
+
+  .start-date {}
+
+  .prev-month {}
+  .next-month { }
+  .current-month {}
+
+  .has-events {}
+}
+
+#stretch {
+  width: none;
+  height: none;
+}
+
+.showcase-block {
+  background-color: #00C7EF;
+}
+
+.showcase-block > h4 {
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+}
+
+.nav-wrapper {
+  background-color: #00E2C8;
+}
+
+.brand-logo {
+  font-family: 'Lobster', cursive;
+}

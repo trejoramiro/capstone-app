@@ -20,7 +20,12 @@
   <div class="col s9">
     <h4>Events</h4><% @events.each do |event| %>
     <div class="card">
-      <div class="card-content"><span class="card-title"><%= event.name %></span>
+      <div class="card-content"><span class="card-title"><%= event.name %></span><% venue = event.current_user_voted_on(current_user.id) %>
+        <% if venue %>
+        <p class="vote-commited">Voted </p>
+        <p><%= venue.name %></p>
+        <p><%= venue.location %></p>
+        <p><%= venue.chosen %></p><% end %>
         <ul data-collapsible="accordion" class="collapsible">
           <li>
             <div class="collapsible-header">Venues</div>
