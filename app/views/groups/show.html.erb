@@ -1,21 +1,15 @@
 
 <div class="row"> 
   <div class="col s12">
-    <h3>Search for a Venue</h3>
-    <div class="col s4">
-      <div class="row">
-        <div class="col s12">
-          <div class="col s10">
-            <input type="text" ng-model="searchQuery" placeholder="Keyword"/>
-          </div>
-          <div class="col s2"><i class="material-icons">search</i></div>
-        </div>
-      </div>
-    </div>
-    <div class="col s4">
-      <input type="text" ng-model="location" placeholder="Location"/><a class="waves-effect waves-teal btn-flat">Get My Location</a>
-    </div>
-    <div class="col s4"><a href="/example" class="waves-effect waves-light btn">Submit</a></div>
+    <% url = "/venues/" + @group.id.to_s %>
+    <%= form_tag(url, method: :get) do %>
+    <%= label_tag(:search, "Keyword") %>
+    <%= text_field_tag(:search) %>
+    <%= label_tag(:location, "Location") %>
+    <%= text_field_tag(:location) %>
+    <%= hidden_field_tag 'group_id', @group.id %>
+    <%= submit_tag("Search") %>
+    <% end %>
   </div>
   <div class="col s9">
     <h4>Events</h4><% @events.each do |event| %>
@@ -42,7 +36,6 @@
     <h5>Chatroom</h5>
     <div ng-app="app">
       <div ng-controller="messagesCtrl" ng-init="setUp()" id="messagesCtrl">
-        <p>{{ 2 + 2 }}</p>
         <div ng-repeat="message in messages">
           <p> <b>{{ message.name }} </b>{{ message.body }}</p>
         </div>

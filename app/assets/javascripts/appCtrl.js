@@ -16,6 +16,12 @@
             //     $scope.messages.splice(0,1);
             });
         };
+
+        $scope.sendSearchQuery = function(){
+          $http.get('/venues/:group_id', params).then(function(response) {
+              
+          });
+        };
         window.$scope = $scope;
     });
 })();

@@ -4,27 +4,23 @@ class VenuesController < ApplicationController
 
     # presents the searches.
     def index
-        if params[:search]
             @group = Group.find_by(id: params[:group_id])
-            if params[:location] == 'Enter Your Location' || params[:location] == 'Current Location'
-                coordinates = @group.latitude.to_s + ',' + @group.longitude.to_s
-                @x = @group.latitude
-                @y = @group.longitude
-            else
-                loc = Geocoder.coordinates(params[:location])
-                coordinates = loc[0].to_s + ',' + loc[1].to_s
-                @x = loc[0]
-                @y = loc[1]
-            end
+            # if params[:location] == 'Enter Your Location' || params[:location] == 'Current Location'
+            #     coordinates = @group.latitude.to_s + ',' + @group.longitude.to_s
+            #     @x = @group.latitude
+            #     @y = @group.longitude
+            # elsif
+            location = Geocoder.coordinates(params[:location])
+            coordinates = location[0].to_s + ',' + location[1].to_s
+            @x = location[0]
+            @y = location[1]
+
             data = Unirest.get("https://api.foursquare.com/v2/venues/explore?ll=#{coordinates}&query=#{params[:search]}&client_id=#{ENV['CLIENT_ID']}&client_secret=#{ENV['CLIENT_SECRET']}&v=20160809").body
             @query = params[:search]
             @venues = data['response']['groups'][0]['items']
             @url = 'https://maps.googleapis.com/maps/api/js?key=' + (ENV['G_KEY']).to_s + '&callback=initMap()'
-            render 'search.html.erb'
-        else
-            # make sure to have the html send the group id params
-            redirect_to "/groups/#{params[:group_id]}"
-        end
+            # render 'search.html.erb'
+            redirect_to "/example"
     end
 
     def create
