@@ -9,4 +9,22 @@ class Group < ApplicationRecord
   has_many :events
 
   has_one :chatroom
+
+  def events_vote_percentage(current_user_id)
+    events = self.events
+    results = {}
+    events.each do |event|
+      votes = Vote.find_by(event_id: event.id)
+      total = votes.count
+      voting = 0
+      votes.each do |vote|
+        if vote.venue_id
+          voting = voting + 1
+        end
+      end
+      percentage = (votes / total) * 100
+      results["#{event.id}"] = percentage
+    end
+  end
+
 end

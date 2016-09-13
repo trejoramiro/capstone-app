@@ -42,6 +42,7 @@
     <h5>Chatroom</h5>
     <div ng-app="app">
       <div ng-controller="messagesCtrl" ng-init="setUp()" id="messagesCtrl">
+        <p>{{ 2 + 2 }}</p>
         <div ng-repeat="message in messages">
           <p> <b>{{ message.name }} </b>{{ message.body }}</p>
         </div>
