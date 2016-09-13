@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   resources :chatrooms
   resources :messages
 
-  get '/' => 'pages#index'
   get '/example' => 'pages#example'
+  get '/circles' => 'pages#index'
 
   get '/groups' => 'groups#index'
   get '/groups/new' => 'groups#new'
@@ -47,6 +47,8 @@ Rails.application.routes.draw do
 
   get '/send' => 'twilios#index'
   post '/reply' => 'twilios#reply'
+
+
 
   namespace :api do
     namespace :v1 do

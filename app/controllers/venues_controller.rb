@@ -11,16 +11,17 @@ class VenuesController < ApplicationController
             #     @y = @group.longitude
             # elsif
             location = Geocoder.coordinates(params[:location])
-            coordinates = location[0].to_s + ',' + location[1].to_s
+            @coordinates = location[0].to_s + ',' + location[1].to_s
             @x = location[0]
             @y = location[1]
 
-            data = Unirest.get("https://api.foursquare.com/v2/venues/explore?ll=#{coordinates}&query=#{params[:search]}&client_id=#{ENV['CLIENT_ID']}&client_secret=#{ENV['CLIENT_SECRET']}&v=20160809").body
+            data = Unirest.get("https://api.foursquare.com/v2/venues/explore?ll=#{@coordinates}&query=#{params[:search]}&client_id=#{ENV['CLIENT_ID']}&client_secret=#{ENV['CLIENT_SECRET']}&v=20160809").body
             @query = params[:search]
-            @venues = data['response']['groups'][0]['items']
-            @url = 'https://maps.googleapis.com/maps/api/js?key=' + (ENV['G_KEY']).to_s + '&callback=initMap()'
+            # @venues = data['response']['groups'][0]['items']
+            # @url = 'https://maps.googleapis.com/maps/api/js?key=' + (ENV['G_KEY']).to_s + '&callback=initMap()'
             # render 'search.html.erb'
-            redirect_to "/example"
+            render "example.html.erb"
+            # redirect_to "/example/#{coordinates}/#{@query}"
     end
 
     def create

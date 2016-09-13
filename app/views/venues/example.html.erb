@@ -21,6 +21,8 @@ text {
   <div class="col s6 offset-s6">
       <a class="waves-effect waves-light btn" id="distanceButton" onclick="">Distance</a>
       <a class="waves-effect waves-light btn" id="ratingButton">Rating</a>
+      <%= @query %>
+      <%= @coordinates %>
 </div>
 </div>
 </div>
@@ -51,7 +53,7 @@ var svg = d3.select("#myGraph").append("svg")
     .attr("class", "bubble");
 
 // "/flare.json"
-d3.json("http://localhost:3000/api/v1/circles", function(error, root) {
+d3.json("http://localhost:3000/api/v1/circles?search=<%= @query %>&coordinates=<%= @coordinates %>", function(error, root) {
   if (error) throw error;
 
   //console.log(JSON.stringify(classes(root)))

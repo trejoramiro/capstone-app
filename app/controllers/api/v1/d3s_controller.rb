@@ -1,7 +1,7 @@
 class Api::V1::D3sController < ApplicationController
 
   def index
-    data = Unirest.get("https://api.foursquare.com/v2/venues/explore?ll=41.895273,-87.67545799999999&query=sushi&client_id=#{ENV['CLIENT_ID']}&client_secret=#{ENV['CLIENT_SECRET']}&v=20160809").body
+    data = Unirest.get("https://api.foursquare.com/v2/venues/explore?ll=#{params[:coordinates]}&query=#{params[:search]}&client_id=#{ENV['CLIENT_ID']}&client_secret=#{ENV['CLIENT_SECRET']}&v=20160809").body
     @venues = []
     venues_data = data['response']['groups'][0]['items']
     # venues_data.each do |data|
