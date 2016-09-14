@@ -5,6 +5,10 @@ class PagesController < ApplicationController
     render 'example.html.erb'
   end
 
+  def home
+    render 'home.html.erb'
+  end
+
   def index
     data = Unirest.get("https://api.foursquare.com/v2/venues/explore?ll=#{params[:coordinates]}&query=#{params[:search]}&client_id=#{ENV['CLIENT_ID']}&client_secret=#{ENV['CLIENT_SECRET']}&v=20160809").body
     @venues = []

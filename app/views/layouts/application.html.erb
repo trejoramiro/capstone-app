@@ -28,7 +28,6 @@
 
   </head>
   <body class="full">
-
   <nav>
     <div class="nav-wrapper">
       <a href="/groups" class="brand-logo">Meetuply</a>
@@ -41,9 +40,11 @@
       <% end %>
     </div>
   </nav>
+
     <div class="container">
       <%= yield %>
     </div>
+    <% if current_user %>
     <ul id="slide-out" class="side-nav">
       <li><div class="userView">
         <a href="#!user"><%= image_tag(current_user.profile_img, id: "profile-img") %></a>
@@ -59,7 +60,10 @@
       <% end %>
       <% end %>
     </ul>
+    <% end %>
+    <% if current_user %>
     <a href="#" data-activates="slide-out" class="button-collapse" onclick="slideOut()"><i class="material-icons">menu</i></a>
+    <% end %>
 
     <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
   </body>

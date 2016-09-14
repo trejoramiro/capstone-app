@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :chatrooms
   resources :messages
 
+  get '/' => 'pages#home'
   get '/example' => 'pages#example'
   get '/circles' => 'pages#index'
 

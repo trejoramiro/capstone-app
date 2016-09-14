@@ -16,8 +16,9 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @group = Group.find_by(id: current_user.id)
+    @group = Group.find_by(id: params[:id])
     @members = @group.users
+
     @events = @group.events
 
     venue_list = []
@@ -43,14 +44,14 @@ class GroupsController < ApplicationController
       render 'new.html.erb'
   end
 
-  def create
-    @group = Group.new(
-        name: params[:name],
-        location: params[:location]
-)
-    @group.save
-    redirect_to "/groups/#{@group.id}"
-  end
+  # def create
+  #   @group = Group.new(
+  #       name: params[:name],
+  #       location: params[:location]
+  #       )
+  #   @group.save
+  #   redirect_to "/groups/#{@group.id}"
+  # end
 
   def edit
       @group = Group.find_by(id: params[:id])
@@ -74,9 +75,17 @@ class GroupsController < ApplicationController
   end
 
   def create
-      @group = Group.find_by(id: params[:group_id])
-  @group.longitude = params['coordinates']['longitude'].to_f
-  @group.latitude = params['coordinates']['latitude'].to_f
-  @group.save
+    coord = Geocoder.coordinates(params[:location])
+    @group = Group.new(name: params[:name])
+    @group.vote_status = "Active"
+    @group.location = params[:location]
+    @group.longitude = coord[0]
+    @group.latitude = coord[1]
+    @group.save
+
+    user = User.find_by(id: current_user.id)
+    @groups = user.groups
+
+    redirect_to "/groups/#{@group.id}"
   end
 end

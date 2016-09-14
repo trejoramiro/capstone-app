@@ -33,6 +33,7 @@ before_action :authenticate_user!, except: ['new']
       username: params[:name],
       email: params[:email],
       password: params[:password],
+      profile_img: 'model-004-small.png',
       password_confirmation: params[:password_confirmation]
     )
     if user.save
