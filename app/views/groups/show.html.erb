@@ -25,10 +25,11 @@
         <p class="vote-commited">Voted </p>
         <p><%= venue.name %></p>
         <p><%= venue.location %></p>
-        <p><%= venue.chosen %></p><% end %><a href="#">(Show map)</a>
+        <p><%= venue.chosen %></p><% end %>
+        <% if event.venue_id%><a href="#">(Show map)</a><% end %>
         <ul data-collapsible="accordion" class="collapsible">
           <li>
-            <div class="collapsible-header">Venues</div>
+            <div class="collapsible-header">Voting List</div>
             <div class="collapsible-body"><% @venues[event.id.to_s].each do | venue | %>
               <p><%= venue.name %></p><% end %>
             </div>

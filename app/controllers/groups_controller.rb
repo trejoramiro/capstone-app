@@ -9,7 +9,9 @@ class GroupsController < ApplicationController
     @events = {}
     @groups.each do |group|
       @members[group.id.to_s] = group.users.limit(2)
+      if group.events.order(:start_time).first != nil
       @events [group.id.to_s] = group.events.order(:start_time).first
+      end
     end
     # binding.pry
     render 'index.html.erb'
@@ -85,6 +87,12 @@ class GroupsController < ApplicationController
 
     user = User.find_by(id: current_user.id)
     @groups = user.groups
+
+    @chatroom = Chatroom.new(group_id: @group.id)
+    @chatroom.save
+
+    @groupusers = GroupUser.new(group_id: @group.id, user_id: current_user.id)
+    @groupusers.save
 
     redirect_to "/groups/#{@group.id}"
   end

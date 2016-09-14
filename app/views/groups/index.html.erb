@@ -16,17 +16,19 @@
   <div class="col s12"><% @groups.each do |group| %>
     <div class="card white">
       <div class="card-content"><span class="card-title"> <b><%= group.name %></b></span>
-        <p><%= group.location %></p>
+        <p><%= group.location %></p><% if @events != {} %>
         <p>Next Event</p>
         <p><%= @events[group.id.to_s].name %></p>
-        <p><%= @events[group.id.to_s].start_time.strftime("%b %e, %l:%M %p") %></p>
+        <p><%= @events[group.id.to_s].start_time.strftime("%b %e, %l:%M %p") %></p><% end %>
       </div>
       <div class="card-action">
-        <p class="white-text">Members</p><% members = @members[group.id.to_s] %>
+        <p class="white-text">Members</p><% if @members %>
+        <% members = @members[group.id.to_s] %>
         <div class="row"></div><% members.each do |member| %>
         <div class="col s1"><% url = member.profile_img %>
           <%= image_tag(url, id: "profile-img") %>
-        </div><% end %><a href="/groups/<%= group.id %>">View More... </a><img src="https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=<%= ENV['G_KEY'] %>"/>
+        </div><% end %>
+        <% end %><a href="/groups/<%= group.id %>">View More... </a><img src="https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=<%= ENV['G_KEY'] %>"/>
       </div>
     </div><% end %>
     <%= month_calendar do |date| %>
