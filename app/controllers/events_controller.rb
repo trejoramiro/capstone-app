@@ -12,8 +12,9 @@ class EventsController < ApplicationController
         @event = Event.new(
             name: params[:name],
             capacity: params[:capacity],
-            start_time: date,
-            end_time: date,
+            start_time: params[:start_time],
+            end_time: params[:end_time],
+            date: params[:date],
             description: params[:description],
             group_id: @group.id,
             are_voting: TRUE

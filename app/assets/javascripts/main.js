@@ -30,10 +30,9 @@ function initMap() {
 
         var id = data.data[i].id;
         var idString = id.toString();
-        console.log(idString)
         map = new google.maps.Map(document.getElementById(idString), {
-            center: {lat: -34.397, lng: 150.644},
-            zoom: 8
+            center: {lat: parseInt(data.data[i].lat), lng: parseInt(data.data[i].lng) },
+            zoom: 15
             });
       }
 

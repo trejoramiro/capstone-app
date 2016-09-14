@@ -4,10 +4,11 @@ class Api::V1::MapsController < ApplicationController
     @data = []
     groups.each do |group|
         event = group.events.first
+        chosen_venue = event.venues.find_by(chosen: TRUE)
         hash = {}
         hash["id"] = group.id
-        hash["lat"] = -34.397
-        hash["lng"] = 150.644
+        hash["lat"] = chosen_venue.lat
+        hash["lng"] = chosen_venue.lng
         @data.push(hash)
     end
     # binding.pry

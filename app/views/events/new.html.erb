@@ -13,11 +13,18 @@
 </div>
 <div>
 <%= label_tag(:start_time, "Start Time") %>
-<%= text_field_tag(:start_time) %>
+<%= time_field_tag(:start_time)%>
+<!-- <%= text_field_tag(:start_time) %> -->
 </div>
 <div>
 <%= label_tag(:end_time, "End Time") %>
-<%= text_field_tag(:end_time) %>
+<%= time_field_tag(:end_time)%>
+<!-- <%= text_field_tag(:end_time) %> -->
+</div>
+<div>
+  <%= label_tag(:date, "Date") %>
+  <%= date_field_tag(:date, nil, class: 'datepicker') %>
+  <!-- <input type="date" class="datepicker"> -->
 </div>
 <%= submit_tag("Create") %>
 <% end %>

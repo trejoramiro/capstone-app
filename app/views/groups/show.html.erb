@@ -1,5 +1,5 @@
 
-<div class="row">
+<div class="row"> 
   <div class="col s12">
     <% url = "/venues/" + @group.id.to_s %>
     <%= form_tag(url, method: :get) do %>
@@ -9,7 +9,7 @@
     <%= text_field_tag(:location) %>
     <%= hidden_field_tag 'group_id', @group.id %>
     <%= submit_tag("Search") %>
-    <% end %>
+    <% end %><a href="/events/<%= @group.id %>/new" class="waves-effect waves-light btn">Create New Event</a>
   </div>
   <div class="col s9">
     <h4>Events</h4><% @events.each do |event| %>
