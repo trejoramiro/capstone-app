@@ -1,7 +1,7 @@
 
 <div class="row"> 
   <div class="col s12">
-    <% url = "/venues/" + @group.id.to_s %>
+    <h4>Search</h4><% url = "/venues/" + @group.id.to_s %>
     <%= form_tag(url, method: :get) do %>
     <%= label_tag(:search, "Keyword") %>
     <%= text_field_tag(:search) %>
@@ -14,7 +14,13 @@
   <div class="col s9">
     <h4>Events</h4><% @events.each do |event| %>
     <div class="card">
-      <div class="card-content"><span class="card-title"><%= event.name %></span><% venue = event.current_user_voted_on(current_user.id) %>
+      <div class="card-content"><span class="card-title"><%= event.name %></span>
+        <p><%= event.date.strftime("%A, %b %d") %></p>
+        <p><%= event.start_time.strftime("%I:%M:%S %p") %></p>
+        <p><%= event.end_time.strftime("%I:%M:%S %p") %></p>
+        <p>Description: <%= event.description %></p>
+        <p>Capcity: <%= event.capacity %></p>
+        <hr/><% venue = event.current_user_voted_on(current_user.id) %>
         <% if venue %>
         <p class="vote-commited">Voted </p>
         <p><%= venue.name %></p>
