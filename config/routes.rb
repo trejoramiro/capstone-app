@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   delete '/events/:id' => 'events#delete'
 
   get '/venues/:group_id' => 'venues#index'
-  post '/venues/:group_id/:search_term' => 'venues#create'
+  post '/venues' => 'venues#create'
 
   get '/votes/:group_id/:event_id' => 'votes#show'
   post '/votes/:group_id' => 'votes#update'

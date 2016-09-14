@@ -20,6 +20,7 @@ class VenuesController < ApplicationController
             # @venues = data['response']['groups'][0]['items']
             # @url = 'https://maps.googleapis.com/maps/api/js?key=' + (ENV['G_KEY']).to_s + '&callback=initMap()'
             # render 'search.html.erb'
+            @events = @group.events
             render "example.html.erb"
             # redirect_to "/example/#{coordinates}/#{@query}"
     end
@@ -30,19 +31,20 @@ class VenuesController < ApplicationController
         total_venues = []
 
         length.times do
-            venue_string = params[:venue_ids][index]
             @venue = Venue.new(
-                name: venue_string.split('?')[0],
-                location: venue_string.split('?')[1],
-                group_id: params[:group_id],
-                event_id: params['post']['event_id'],
-                lat: venue_string.split('?')[2],
-                lng: venue_string.split('?')[3]
+            name: params[:venue_ids][index]["name"],
+            location: params[:venue_ids][index]["location"],
+            group_id: params[:group_id],
+            event_id: params[:event_id].to_i,
+            lat: params[:venue_ids][index]["lat"],
+            lng: params[:venue_ids][index]["lng"]
             )
             @venue.save
             total_venues << @venue
             index += 1
         end
-        redirect_to "/groups/#{params[:group_id]}"
+        # redirect_to "/groups/#{params[:group_id]}"
+        render json: {group_id: params[:group_id]}
+        # binding.pry
     end
 end
