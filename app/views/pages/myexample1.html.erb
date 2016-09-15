@@ -41,9 +41,9 @@ var bubble = d3.layout.pack()
 d3.json("http://localhost:3000/api/v1/circles", function(error, root) {
   if (error) throw error;
 
-console.log(JSON.stringify(root))
+// console.log(JSON.stringify(root))
  var nodes = bubble.nodes(distance(root));
- console.log(nodes);
+ // console.log(nodes);
 
   var node = canvas.selectAll(".node")
        .data(nodes)

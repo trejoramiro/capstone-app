@@ -8,11 +8,16 @@ class GroupsController < ApplicationController
     @members = {}
     @events = {}
     @groups.each do |group|
-      @members[group.id.to_s] = group.users.limit(2)
+      @members[group.id.to_s] = group.users.limit(4)
       if group.events.order(:start_time).first != nil
-      @events [group.id.to_s] = group.events.order(:start_time).first
+      @events[group.id.to_s] = group.events.order(:start_time).first
       end
     end
+    # binding.pry
+    @meeting = []
+    meeting  = user.groups.first.events.order(date: :desc).first
+    @meeting << meeting
+
     # binding.pry
     render 'index.html.erb'
   end

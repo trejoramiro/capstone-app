@@ -65,3 +65,7 @@ function initMap() {
 // $('.button-collapse').sideNav('show');
 //   // Hide sideNav
 // $('.button-collapse').sideNav('hide');
+
+function myFunction() {
+    document.getElementById("myCheck").click();
+}

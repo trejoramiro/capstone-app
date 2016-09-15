@@ -1,39 +1,48 @@
 
 <div class="row">
-  <div class="col s12"> 
-    <div class="card horizontal">
-      <div class="card-image"></div>
-      <div class="card-stacked showcase-block">
-        <h4>Don't Miss These Places For Next Meetup</h4>
-        <div class="card-content">
-          <p>I am a header</p>
-        </div>
-        <div class="card-action"><a href="#">This is a link </a></div>
+  <div class="col s12"> </div>
+  <div class="col s6"><br/><a href="/groups/new" class="waves-effect waves-light btn">Create Group  </a><br/></div>
+  <div class="col s12">
+    <h2>Groups </h2><% @groups.each do |group| %>
+    <div id="myCheck" onmouseclick="myFunction()" onclick="window.location='/groups/<%= group.id %>'" class="animated bounceIn card white">
+      <div class="card-content"><span class="card-title"> 
+          <h3> <b style="color: #909090;"><%= group.name %></b></h3></span></div>
+      <div class="card-action">
+        <p>Location: <%= group.location %></p>
+        <p>Voting Status: <%= group.vote_status %></p>
+        <p>Members (<%= group.users.count %>)
+          <p><% group.users.each do |member| %><% url = member.profile_img %>
+            <%= image_tag(url, id: "profile-img") %>
+            <% end %>
+          </p>
+        </p>
       </div>
-    </div>
+    </div><% end %> 
   </div>
-  <div class="col s6"><a href="/groups/new" class="waves-effect waves-light btn">Create Group  </a></div>
-  <div class="col s12"><% @groups.each do |group| %>
-    <div class="card white">
-      <div class="card-content"><span class="card-title"> <b><%= group.name %></b></span>
-        <p><%= group.location %></p><% if @events != {} %>
-        <p>Next Event</p>
-        <p><%= @events[group.id.to_s].name %></p>
+  <div class="col s12">
+    <h2>Upcoming Meetups</h2><br/><% @groups.each do |group| %>
+    <div id="myCheck" onmouseclick="myFunction()" onclick="window.location='/groups/<%= group.id %>'" class="card white">
+      <div class="card-content"><b style="color: #909090;"><%= group.name %></b><% if @events != {} %><span class="card-title"> 
+          <h3> <b><%= @events[group.id.to_s].name %></b></h3></span>
+        <p><%= group.events.first.venues.find_by(chosen: true).name %></p>
+        <p><%= group.events.first.venues.find_by(chosen: true).location %></p>
         <p><%= @events[group.id.to_s].start_time.strftime("%b %e, %l:%M %p") %></p><% end %>
       </div>
-      <div class="card-action">
-        <p class="white-text">Members</p><% if @members %>
+      <div class="card-action"><span class="card-title"><b>Members</b></span><% if @members %>
         <% members = @members[group.id.to_s] %>
         <div class="row"></div><% members.each do |member| %>
         <div class="col s1"><% url = member.profile_img %>
           <%= image_tag(url, id: "profile-img") %>
         </div><% end %>
-        <% end %><a href="/groups/<%= group.id %>">View More... </a><img src="https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=<%= ENV['G_KEY'] %>"/>
+        <% end %><img src="https://maps.googleapis.com/maps/api/staticmap?center=<%= group.chosen_venue %>&zoom=16&size=600x300&maptype=roadmap&markers=color:green%7Clabel:G%7C<%= group.chosen_venue %>&" style="padding-top: 40px;"/>
       </div>
     </div><% end %>
-    <%= month_calendar do |date| %>
-  </div><%= date %>
-  <% end %>
+    <%= month_calendar events: @meeting do |date, meeting| %>
+  </div><%= date.strftime("%d") %>
+  <% meeting.each do |row| %>
+  <div>
+    <%= row.name %>
+    <% end %>
+  </div><% end %><br/>
 </div>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['G_KEY'] %>&callback=initMap"></script>
 <script src="//d3js.org/d3.v3.min.js"> </script>

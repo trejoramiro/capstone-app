@@ -18,11 +18,9 @@ text {
 <body>
   <div class="row">
   <div class="col s12">
-  <div class="col s6 offset-s6">
+  <br>
       <a class="waves-effect waves-light btn" id="distanceButton" onclick="">Distance</a>
       <a class="waves-effect waves-light btn" id="ratingButton">Rating</a>
-  </div>
-  <div class="col s6 offset-s6">
     <div ng-app="app">
       <% hello = "hello" %>
       <div ng-controller="messagesCtrl" ng-init="setEvents(<%= hello %>)">
@@ -35,18 +33,17 @@ text {
         </div>
         </form>
       </div>
-    </div>
   </div>
 </div>
 </div>
 
   <div class="tooltip">
     <h2></h2>
-    <p>Location</p>
+    <!-- <p>Location</p>
     <p>Hours</p>
-    <p>Rating</p>
+    <p>Rating</p> -->
   </div>
- <div class="col s12" id="myGraph">
+ <div class="col s12" id="myGraph" >
  </div>
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
@@ -72,7 +69,7 @@ d3.json("http://localhost:3000/api/v1/circles?search=<%= @query %>&coordinates=<
   if (error) throw error;
 
   //console.log(JSON.stringify(classes(root)))
-  console.log(JSON.stringify(root))
+  // console.log(JSON.stringify(root))
   // console.log(root["children"])
 
 /////
@@ -114,7 +111,7 @@ var circles2 = node2.append("circle")
 
 
   node.append("title")
-      .text(function(d) { return d.className + ": " + format(d.value); });
+      .text(function(d) { return d.className });
 
   var circles = node.append("circle")
       .attr("r", 0)
@@ -145,7 +142,7 @@ var circles2 = node2.append("circle")
 
       node
       .on("click", function(d, i){
-        console.log("I have been clicked.")
+        // console.log("I have been clicked.")
 
         // console.log(d, i, this)
         // this.attr("fill", "rgb(100,68,26)")
@@ -197,9 +194,13 @@ var circles2 = node2.append("circle")
                 .duration(1000)
                 .attr("r", function(d) { return d.r })
           })
+
   // node.append("text")
   //     .attr("dy", ".3em")
   //     .style("text-anchor", "middle")
+  //     .style("color", "black")
+  //     .style("font-size", "large")
+  //     .style("z-index", 5)
   //     .text(function(d) { return d.className.substring(0, d.r / 3); });
 });
 

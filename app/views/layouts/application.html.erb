@@ -9,6 +9,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 
     <!-- Fav and touch icons -->
 
@@ -30,8 +31,16 @@
   <body class="full">
   <nav>
     <div class="nav-wrapper">
-      <a href="/groups" class="brand-logo">Meetuply</a>
+      <a href="/groups" class="brand-logo"><i class="material-icons" style="font-size: 6rem;">store</i>Meetuply</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <% if current_user %>
+        <li><a href="#"><i class="material-icons">chat_bubble</i></a></li>
+        <li><a href="#"><%= current_user.username %></a></li>
+        <li><%= image_tag(current_user.profile_img, id: "profile-img") %></li>
+      </ul>
+      <% end %>
+      <ul id="mobile-demo" class="side-nav">
         <% if current_user %>
         <li><a href="#"><i class="material-icons">chat_bubble</i></a></li>
         <li><a href="#"><%= current_user.username %></a></li>
@@ -42,8 +51,13 @@
   </nav>
 
     <div class="container">
+      <br>
+      <% if current_user %>
+      <a href="#" data-activates="slide-out" class="button-collapse btn" onclick="slideOut()">Control Center</a>
+      <% end %>
       <%= yield %>
     </div>
+
     <% if current_user %>
     <ul id="slide-out" class="side-nav">
       <li><div class="userView">
@@ -59,12 +73,39 @@
       <li><a class="subheader"><%= event.name  %></a></li>
       <% end %>
       <% end %>
+      <li><a href="/logout">Logout</a></li>
     </ul>
     <% end %>
-    <% if current_user %>
-    <a href="#" data-activates="slide-out" class="button-collapse" onclick="slideOut()"><i class="material-icons">menu</i></a>
-    <% end %>
+    </div>
+
+    <footer class="page-footer">
+          <div class="container footer">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text brand-logo"><i class="material-icons" style="font-size: 4rem;">store</i>Meetuply</h5>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="#!">Home</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Groups</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Events</a></li>
+                  <li><a class="grey-text text-lighten-3" href="#!">Friends</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2016 Copyright
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
+      </footer>
 
     <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
   </body>
+  <script>
+  $('.button-collapse').sideNav();
+  </script>
 </html>

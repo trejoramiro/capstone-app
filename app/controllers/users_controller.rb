@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-before_action :authenticate_user!, except: ['new']
+before_action :authenticate_user!, except: ['new', 'create']
 
   def show
     @user = User.find_by(id: params[:id])
@@ -36,14 +36,17 @@ before_action :authenticate_user!, except: ['new']
       profile_img: 'model-004-small.png',
       password_confirmation: params[:password_confirmation]
     )
-    if user.save
-      session[:user_id] = user.id
-      flash[:success] = 'Successfully created account!'
-      redirect_to '/'
-    else
-      flash[:warning] = 'Invalid email or password!'
-      redirect_to '/signup'
-    end
+    user.save
+    session[:user_id] = user.id
+    redirect_to '/groups'
+    # if user.save
+    #   session[:user_id] = user.id
+    #   flash[:success] = 'Successfully created account!'
+    #   redirect_to '/groups'
+    # else
+    #   flash[:warning] = 'Invalid email or password!'
+    #   redirect_to '/signup'
+    # end
   end
 
 end

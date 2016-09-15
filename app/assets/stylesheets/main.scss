@@ -23,7 +23,13 @@ body {
   text-align: center;
   padding: 10px;
   font-weight: bold;
+  font-size: 2em;
+  background-color: white;
 }
+
+// .calendar-heading > a  {
+//   padding-left: 100px;
+// }
 
 .simple-calendar {
 
@@ -33,29 +39,32 @@ body {
     text-align: left;
   }
 
-  .wday-0 {}
-  .wday-1 {}
-  .wday-2 {}
-  .wday-3 {}
-  .wday-4 {}
-  .wday-5 {}
-  .wday-6 {}
+  .wday-0 { background-color: white; }
+  .wday-1 { background-color: white; }
+  .wday-2 { background-color: white; }
+  .wday-3 { background-color: white; }
+  .wday-4 { background-color: white; }
+  .wday-5 { background-color: white; }
+  .wday-6 { background-color: white; }
 
   .today {
-    background-color: #d3d3d3;
+    background-color: #DAA520;
   }
-  .past {}
-  .future {}
+  .past {  }
+  .future { }
 
   .start-date {}
 
-  .prev-month {}
-  .next-month { }
+  .prev-month { background-color: #D3D3D3; }
+  .next-month { background-color: #D3D3D3; }
   .current-month {}
 
-  .has-events {}
+  .has-events { font-weight: bold; }
 }
 
+tr {
+  background-color: white;
+}
 #stretch {
   width: none;
   height: none;
@@ -130,4 +139,57 @@ body {
   font-size: 2em;
   text-shadow: 0 0 0.5em black;
   text-align: center;
+}
+
+.footer {
+  width: 100%;
+}
+
+nav {
+  height: 104px !important;
+}
+
+.nav-wrapper {
+  padding: 20px;
+}
+
+.brand-logo {
+  font-size: 5em !important;
+}
+
+body {
+  // background: url(http://cdn.wedding-spot.com/images/venues/6523/Artifact-Events-at-Architectural-Artifacts-Wedding-Chicago-IL-5.1446506065.png) no-repeat center center fixed;
+  background: linear-gradient(to bottom, rgba(30,144,255,0.5) 0%,rgba(30,144,255,0.5) 100%), url(http://a.dryicons.com/files/graphics_previews/DD-Abstract-Background-11232-Preview.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+
+.card {
+  margin-bottom: 4.5rem !important;
+}
+
+
+.search-box {
+  background-color: #ee6e73;
+  padding: 45px 15px 15px 15px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12)
+}
+
+.search-input {
+  background-color: white !important;
+  border-radius: 70px !important;
+  text-indent: 15px;
+  color: gray;
+}
+
+.chatroom-box {
+  background-color: white;
+  padding: 15px 15px 15px 15px;
+}
+
+.page-footer {
+  background-color: #00E2C8 !important;
+}
+
+#myGraph {
+  background-color: white;
 }
