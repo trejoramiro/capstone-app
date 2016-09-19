@@ -37,12 +37,14 @@ class VenuesController < ApplicationController
             group_id: params[:group_id],
             event_id: params[:event_id].to_i,
             lat: params[:venue_ids][index]["lat"],
-            lng: params[:venue_ids][index]["lng"]
+            lng: params[:venue_ids][index]["lng"],
+            chosen: FALSE
             )
             @venue.save
             total_venues << @venue
             index += 1
         end
+        # binding.pry
         # redirect_to "/groups/#{params[:group_id]}"
         render json: {group_id: params[:group_id]}
         # binding.pry

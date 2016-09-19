@@ -26,7 +26,7 @@ text {
       <div ng-controller="messagesCtrl" ng-init="setEvents(<%= hello %>)">
         <form name="myForm">
           <div input-field>
-            <select class="" ng-model="selectedEvent" material-select watch>
+            <select class="" ng-model="selectedEvent"material-select watch>
                 <option ng-repeat="value in availableOptions" value="{{value.id}}">{{value.name}}</option>
             </select>
             <button type="submit" ng-click="sendSelectedOptions(selectedEvent)" class="waves-effect waves-light btn"> Send </button>
@@ -43,8 +43,14 @@ text {
     <p>Hours</p>
     <p>Rating</p> -->
   </div>
+  <br>
  <div class="col s12" id="myGraph" >
+   <h4 style="padding-top: 10px; padding-left: 10px;"> Search results for <%= @query %></h4>
+   <p style="padding-top: 10px; padding-left: 10px;"> Hover over a circle to reveal a venue.</p>
+   <p style="padding-top: 10px; padding-left: 10px;"> Click circles to add to voting list.</p>
+
  </div>
+ <br>
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script>
 

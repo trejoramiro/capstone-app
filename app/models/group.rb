@@ -28,8 +28,10 @@ class Group < ApplicationRecord
   end
 
   def chosen_venue
-    venue = events.first.venues.find_by(chosen: true)
-    "#{venue.lat},#{venue.lng}"
+    if events.any?
+      venue = events.first.venues.find_by(chosen: true)
+      "#{venue.lat},#{venue.lng}"
+    end
   end
 
 end

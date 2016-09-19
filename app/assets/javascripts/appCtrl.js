@@ -27,8 +27,8 @@
 
           console.log(events);
           $scope.availableOptions = [
-            {id: '6', name: 'Summer Bash'},
-            {id: '7', name: 'Halloween Party'}
+            {id: '11', name: 'Bar Crawl'},
+            {id: '10', name: 'Karaoke Night'}
           ]
         }
 
@@ -54,7 +54,7 @@
 
       var params = {
         event_id: selectedEvent,
-        group_id: 41,
+        group_id: 67,
         venue_ids: venues
       };
 

@@ -1,11 +1,15 @@
-<%= form_tag("/groups/", method: "post") do %>
+<br>
+<%= form_tag("/groups/", method: "post", :class => "form-tag") do %>
+<h3 style="color: white"><strong>Create Group</strong></h3>
+<br>
 <div>
-<%= label_tag(:name, "Name") %>
-<%= text_field_tag(:name) %>
+<!-- <%= label_tag(:name, "Name") %> -->
+<%= text_field_tag(:name, nil, :class =>"search-input", placeholder: 'Name') %>
 </div>
 <div>
-<%= label_tag(:location, "Location") %>
-<%= text_field_tag(:location) %>
+<!-- <%= label_tag(:location, "Location") %> -->
+<%= text_field_tag(:location, nil, :class =>"search-input", placeholder: 'Location') %>
 </div>
-<%= submit_tag("Create") %>
+<br>
+<%= submit_tag("Create", :class => "btn") %>
 <% end %>

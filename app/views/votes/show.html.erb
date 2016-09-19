@@ -1,12 +1,15 @@
-<h3><%= @event.name %></h3>
 
-<%= form_tag("/votes/#{@group.id}", method: "post") do %>
+<%= form_tag("/votes/#{@group.id}", method: "post", :class => "form-tag") do %>
+<h3 style="color: white"><strong><%= @event.name %></strong></h3>
+<hr>
+<br>
 <% @venues.each do |venue| %>
     <p>
       <%= radio_button_tag(:venue, "#{venue.id}") %>
-      <%= label_tag("venue_#{venue.id}", "#{venue.name}") %>
+      <%= label_tag("venue_#{venue.id}", "#{venue.name}", :style => "color:white") %>
     </p>
   <%= hidden_field_tag :event_id, @event.id %>
 <% end %>
-<%= submit_tag("Vote") %>
+<br>
+<%= submit_tag("Vote", :class => "btn") %>
 <% end %>
