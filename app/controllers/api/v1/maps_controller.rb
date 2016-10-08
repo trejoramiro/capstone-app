@@ -11,7 +11,6 @@ class Api::V1::MapsController < ApplicationController
         hash["lng"] = chosen_venue.lng
         @data.push(hash)
     end
-    # binding.pry
     render 'index.json.jbuilder'
   end
 end

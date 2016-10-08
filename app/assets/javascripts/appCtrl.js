@@ -13,7 +13,6 @@
             };
             $http.post('/api/v1/messages', params).then(function(response) {
                 $scope.newMessageBody = '';
-            //     $scope.messages.splice(0,1);
             });
         };
 
@@ -63,7 +62,6 @@
         window.location = '/groups/' + response.data.group_id;
       });
 
-      // console.log(selectedEvent);
       console.log(params);
     }
     });

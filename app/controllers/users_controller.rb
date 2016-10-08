@@ -39,14 +39,6 @@ before_action :authenticate_user!, except: ['new', 'create']
     user.save
     session[:user_id] = user.id
     redirect_to '/groups'
-    # if user.save
-    #   session[:user_id] = user.id
-    #   flash[:success] = 'Successfully created account!'
-    #   redirect_to '/groups'
-    # else
-    #   flash[:warning] = 'Invalid email or password!'
-    #   redirect_to '/signup'
-    # end
   end
 
 end

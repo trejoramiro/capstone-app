@@ -44,9 +44,7 @@ class VenuesController < ApplicationController
             total_venues << @venue
             index += 1
         end
-        # binding.pry
-        # redirect_to "/groups/#{params[:group_id]}"
+        
         render json: {group_id: params[:group_id]}
-        # binding.pry
     end
 end

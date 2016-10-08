@@ -9,7 +9,6 @@ class ChatroomsController < ApplicationController
         @chatroom = Chatroom.find_by(group_id: 41)
         # make a call to the messages controller to obtain all the messages
         @messages = @chatroom.messages
-        # binding.pry
         render 'show.html'
     end
 end

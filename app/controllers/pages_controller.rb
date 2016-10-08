@@ -13,26 +13,12 @@ class PagesController < ApplicationController
     data = Unirest.get("https://api.foursquare.com/v2/venues/explore?ll=#{params[:coordinates]}&query=#{params[:search]}&client_id=#{ENV['CLIENT_ID']}&client_secret=#{ENV['CLIENT_SECRET']}&v=20160809").body
     @venues = []
     venues_data = data['response']['groups'][0]['items']
-    # venues_data.each do |data|
-    #   hash = {
-    #   "name" => data['venue']['name'],
-    #   "lat" => data['venue']['location']['lat'],
-    #   "lng" => data['venue']['location']['lng']
-    # }
-    # @venues.push(hash)
-    # end
     center = [41.895273,-87.67545799999999]
     @data =  []
     venues_data.each do |data|
       distance = (Math.sqrt( ((data['venue']['location']['lat'] - center[0])**2) + ((data['venue']['location']['lng'] - center[1])**2)) * 1000000).round
       my_data = [ 'cluster', data['venue']['name'], distance, data['venue']['location']['address'], data['venue']['rating'] ]
       @data.push(my_data)
-      # hash = {
-      #   "packageName" => "cluster",
-      #   "name" => data['venue']['name'],
-      #   "distance" => distance
-      # }
-      # @venues.push(hash)
     end
 
     first = 0
@@ -53,7 +39,6 @@ class PagesController < ApplicationController
     mid =  (max + min)/ 2
 
     # compute values for rating
-    # binding.pry
     @data.each do |row|
       if row[4]
         if row[4] >= 8.0
@@ -70,7 +55,6 @@ class PagesController < ApplicationController
 
     @data.each do |data|
       hash = {
-        # "packageName" => data[0],
         "name" => data[1],
         "distance" => data[2],
         "rating" => data[4],
@@ -83,7 +67,6 @@ class PagesController < ApplicationController
       end
       @venues.push(hash)
     end
-    # binding.pry
     first = @venues.shift
     @venues = @venues.shuffle
     @venues.insert(0, first)

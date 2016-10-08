@@ -36,9 +36,6 @@ function initMap() {
             });
       }
 
-    // var array = JSON.stringify(data)
-    // console.log(data.data.length)
-
     });
 
 
@@ -61,10 +58,6 @@ function initMap() {
   // Initialize collapsible (uncomment the line below if you use the dropdown variation)
   //$('.collapsible').collapsible();
 
-//   // Show sideNav
-// $('.button-collapse').sideNav('show');
-//   // Hide sideNav
-// $('.button-collapse').sideNav('hide');
 
 function myFunction() {
     document.getElementById("myCheck").click();

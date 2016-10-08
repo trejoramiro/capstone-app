@@ -13,7 +13,6 @@ class GroupsController < ApplicationController
       @events[group.id.to_s] = group.events.order(:start_time).first
       end
     end
-    # binding.pry
     @meeting = []
     meeting  = user.groups.first.events.order(date: :desc).first
     @meeting << meeting
