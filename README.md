@@ -14,6 +14,7 @@ Coming Soon.
 * AngularJS
 * Materialize
 * D3.js
+
 #### Back-End
 * Rails 5
 
