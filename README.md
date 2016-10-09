@@ -1,5 +1,5 @@
 # MEETUPLY
-![meetuply](https://d1.dropboxusercontent.com/s/5m5yd5sxmw838za/meetuply.png?dl=0)
+![meetuply](https://www.dropbox.com/s/5m5yd5sxmw838za/meetuply.png?dl=0)
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
