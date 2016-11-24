@@ -6,8 +6,8 @@ Meetuply was created to help a group of friends and coworkers agree on a spot to
 
 Created by: Ramiro Trejo
 
-## Watch Demo
-Coming Soon.
+## Watch Demo 
+[Click Here](https://vimeo.com/192866759)
 
 ### Techstack 
 #### Front-End
